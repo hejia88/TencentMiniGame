@@ -39,12 +39,17 @@ public class PlayerMovement : MonoBehaviour
     public float wonderSpeed = 2.5f;
     public float WonderTime = 2.0f;
     private float WonderTimer = 0.0f;
+    public float WonderTimeOffset = 0.5f;
+    private float WonderOffset = 0.5f;
     public float IdleTime = 1.0f;
     private float IdleTimer = 0.0f;
-    private float timerOffset = 0.0f;
+    public float IdleTimeOffset = 0.5f;
+    private float IdleOffset = 0.5f;
+    public float RotationDegree = 30.0f;
+    public float RotationDegreeOffset = 10.0f;
+    private float RotationOffset = 10.0f;
     private STATES state = STATES.IDLE;
-    private Vector3 destination = Vector3.zero;
-    private Vector3 dir = Vector2.zero;
+    private Vector3 dir = Vector2.up;
     void Update()
     {
         mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -156,23 +161,23 @@ public class PlayerMovement : MonoBehaviour
             if (state == STATES.IDLE)
             {
                 IdleTimer += Time.deltaTime;
-                if (IdleTimer >= IdleTime + timerOffset)
+                if (IdleTimer >= IdleTime + IdleOffset)
                 {
                     IdleTimer -= IdleTime;
                     state = STATES.WALKING;
-                    destination = new Vector2(Random.Range(-6, 6), Random.Range(-6, 6));
-                    dir = (destination - transform.position).normalized;
-                    timerOffset = Random.Range(-0.5f, 0.5f);
+                    IdleOffset = Random.Range(-IdleTimeOffset, IdleTimeOffset);
+                    dir = Quaternion.AngleAxis(RotationDegree + RotationOffset, Vector3.forward) * dir;
+                    RotationOffset = Random.Range(-RotationDegreeOffset, RotationDegreeOffset);
                 }
             }
             if (state == STATES.WALKING)
             {
                 WonderTimer += Time.deltaTime;
-                if (WonderTimer >= WonderTime + timerOffset)
+                if (WonderTimer >= WonderTime + WonderOffset)
                 {
                     WonderTimer -= WonderTime;
                     state = STATES.IDLE;
-                    timerOffset = Random.Range(-0.5f, 0.5f);
+                    WonderOffset = Random.Range(-WonderTimeOffset, WonderTimeOffset);
                 }
                 player.transform.position += dir * wonderSpeed * Time.deltaTime;
             }
