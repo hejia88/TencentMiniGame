@@ -68,6 +68,7 @@ public class AIMovement : MonoBehaviour
                 WonderOffset = Random.Range(-WonderTimeOffset, WonderTimeOffset);
             }
             transform.position += dir * wonderSpeed * Time.deltaTime;
+            transform.rotation = dir.x < 0 ? Quaternion.Euler(0, 180, 0) : Quaternion.Euler(0, 0, 0);
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -23,6 +24,7 @@ public class PlayerMovement : MonoBehaviour
         DEATH,
     }
     public bool TouchStart = false;
+    private Animator anim;
     private Vector2 StartPoint;
     private Vector2 EndPoint;
     private float HorizontalInput;
@@ -50,6 +52,14 @@ public class PlayerMovement : MonoBehaviour
     private float RotationOffset = 10.0f;
     private STATES state = STATES.IDLE;
     private Vector3 dir = Vector2.up;
+    //For Test Only
+    //----------------------------
+    public Button attackButton;
+    //----------------------------
+    private void Start()
+    {
+        anim = player.GetComponent<Animator>();
+    }
     void Update()
     {
         mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -154,6 +164,7 @@ public class PlayerMovement : MonoBehaviour
         if (HorizontalInput != 0.0f || VerticalInput != 0.0f)
         {
             player.transform.position += new Vector3(HorizontalInput, VerticalInput).normalized * playerSpeed * Time.deltaTime;
+            player.transform.rotation = HorizontalInput < 0 ? Quaternion.Euler(0, 180, 0) : Quaternion.Euler(0, 0, 0);
         }
         else
         {
@@ -180,9 +191,25 @@ public class PlayerMovement : MonoBehaviour
                     WonderOffset = Random.Range(-WonderTimeOffset, WonderTimeOffset);
                 }
                 player.transform.position += dir * wonderSpeed * Time.deltaTime;
+                player.transform.rotation = dir.x < 0 ? Quaternion.Euler(0, 180, 0) : Quaternion.Euler(0, 0, 0);
             }
-
         }
         #endregion
+        #region PlayerAttack
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            anim.SetTrigger("Attack");
+            FadeToColor(attackButton.colors.pressedColor);
+        }
+        else if (Input.GetKeyUp(KeyCode.E))
+        {
+            FadeToColor(attackButton.colors.normalColor);
+        }
+        #endregion
+    }
+    void FadeToColor(Color color)
+    {
+        Graphic graphic = attackButton.GetComponent<Graphic>();
+        graphic.CrossFadeColor(color, attackButton.colors.fadeDuration, true, true);
     }
 }
