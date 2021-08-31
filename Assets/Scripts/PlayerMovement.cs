@@ -23,20 +23,33 @@ public class PlayerMovement : MonoBehaviour
         RUNNING,
         DEATH,
     }
-    public bool TouchStart = false;
+
+    //Animations
+    //----------------------------
     private Animator anim;
+    private STATES state = STATES.IDLE; private PLAYER_DIRECTIONS currentDir = 0;
+    private bool isRunning = false;
+    private float Direction;
+    //----------------------------
+
+    //Joystick Controls
+    //----------------------------
+    private bool IsDragging = false;
     private Vector2 StartPoint;
     private Vector2 EndPoint;
-    private float HorizontalInput;
+    [HideInInspector] public float HorizontalInput;
     private float VerticalInput;
     public GameObject InnerCircle;
     public GameObject LeftOuterCircle;
     public GameObject RightOuterCircle;
-    private Vector3 mousePos;
-    private PLAYER_DIRECTIONS currentDir = 0;
-    private bool isRunning = false;
-    private float Direction;
+    //----------------------------
+
+
+    //Movement Parameters
+    //----------------------------
+    private Rigidbody2D rb;
     public GameObject player;
+    private Vector3 dir = Vector2.up;
     public float playerSpeed = 5.0f;
     public float wonderSpeed = 2.5f;
     public float WonderTime = 2.0f;
@@ -50,15 +63,26 @@ public class PlayerMovement : MonoBehaviour
     public float RotationDegree = 30.0f;
     public float RotationDegreeOffset = 10.0f;
     private float RotationOffset = 10.0f;
-    private STATES state = STATES.IDLE;
-    private Vector3 dir = Vector2.up;
+    //----------------------------
+
+    //Attack
+    //----------------------------
+    public AIMovement[] AIs;
+    public AIMovement nearestAI;
+    private float distance = 100000;
+    public float range = 3.0f;
+    //----------------------------
+
     //For Test Only
     //----------------------------
     public Button attackButton;
+    private Vector3 mousePos;
     //----------------------------
     private void Start()
     {
+        rb = player.GetComponent<Rigidbody2D>();
         anim = player.GetComponent<Animator>();
+        AIs = FindObjectsOfType<AIMovement>();
     }
     void Update()
     {
@@ -72,7 +96,7 @@ public class PlayerMovement : MonoBehaviour
             InnerCircle.GetComponent<SpriteRenderer>().enabled = true;
             LeftOuterCircle.GetComponent<SpriteRenderer>().enabled = true;
             RightOuterCircle.GetComponent<SpriteRenderer>().enabled = true;
-            TouchStart = true;
+            IsDragging = true;
         }
         else if (Input.GetMouseButtonDown(0) && (mousePos.x > 9 || mousePos.x < -9 || mousePos.y > -9 || mousePos.y < 9)) //鼠标按下时(屏幕外)
         {
@@ -82,15 +106,15 @@ public class PlayerMovement : MonoBehaviour
             InnerCircle.GetComponent<SpriteRenderer>().enabled = true;
             LeftOuterCircle.GetComponent<SpriteRenderer>().enabled = true;
             RightOuterCircle.GetComponent<SpriteRenderer>().enabled = true;
-            TouchStart = true;
+            IsDragging = true;
         }
-        if (Input.GetMouseButton(0) && TouchStart)
+        if (Input.GetMouseButton(0) && IsDragging)
         {
             EndPoint = new Vector2(mousePos.x, mousePos.y);
         }
-        if (Input.GetMouseButtonUp(0) && TouchStart)
+        if (Input.GetMouseButtonUp(0) && IsDragging)
         {
-            TouchStart = false;
+            IsDragging = false;
             HorizontalInput = 0.0f;
             VerticalInput = 0.0f;
             state = STATES.IDLE;
@@ -98,7 +122,7 @@ public class PlayerMovement : MonoBehaviour
             WonderTimer = 0.0f;
         }
         #endregion
-        if (TouchStart)
+        if (IsDragging)
         {
             Vector2 offset = EndPoint - StartPoint;
             isRunning = offset.magnitude > 0.35f ? true : false;  //当处于外轮盘时选择方向,当处于内轮盘时取消移动
@@ -163,7 +187,8 @@ public class PlayerMovement : MonoBehaviour
         #region PlayerMovement
         if (HorizontalInput != 0.0f || VerticalInput != 0.0f)
         {
-            player.transform.position += new Vector3(HorizontalInput, VerticalInput).normalized * playerSpeed * Time.deltaTime;
+            rb.velocity = new Vector3(HorizontalInput, VerticalInput).normalized * playerSpeed;
+            //player.transform.position += new Vector3(HorizontalInput, VerticalInput).normalized * playerSpeed * Time.deltaTime;
             player.transform.rotation = HorizontalInput < 0 ? Quaternion.Euler(0, 180, 0) : Quaternion.Euler(0, 0, 0);
         }
         else
@@ -180,6 +205,7 @@ public class PlayerMovement : MonoBehaviour
                     dir = Quaternion.AngleAxis(RotationDegree + RotationOffset, Vector3.forward) * dir;
                     RotationOffset = Random.Range(-RotationDegreeOffset, RotationDegreeOffset);
                 }
+                rb.velocity = Vector2.zero;
             }
             if (state == STATES.WALKING)
             {
@@ -190,15 +216,27 @@ public class PlayerMovement : MonoBehaviour
                     state = STATES.IDLE;
                     WonderOffset = Random.Range(-WonderTimeOffset, WonderTimeOffset);
                 }
-                player.transform.position += dir * wonderSpeed * Time.deltaTime;
+                //player.transform.position += dir * wonderSpeed * Time.deltaTime;
+                rb.velocity = dir * wonderSpeed;
                 player.transform.rotation = dir.x < 0 ? Quaternion.Euler(0, 180, 0) : Quaternion.Euler(0, 0, 0);
             }
         }
         #endregion
         #region PlayerAttack
-        if (Input.GetKeyDown(KeyCode.E))
+        GetNearest();
+        foreach (AIMovement ai in AIs)
+        {
+            if (ai == nearestAI)
+            {
+                ai.isLocked = true;
+                continue;
+            }
+            ai.isLocked = false;
+        }
+        if (nearestAI != null && Input.GetKeyDown(KeyCode.E))
         {
             anim.SetTrigger("Attack");
+            nearestAI.Die();
             FadeToColor(attackButton.colors.pressedColor);
         }
         else if (Input.GetKeyUp(KeyCode.E))
@@ -207,9 +245,33 @@ public class PlayerMovement : MonoBehaviour
         }
         #endregion
     }
+
     void FadeToColor(Color color)
     {
         Graphic graphic = attackButton.GetComponent<Graphic>();
         graphic.CrossFadeColor(color, attackButton.colors.fadeDuration, true, true);
+    }
+
+    void GetNearest()
+    {
+        nearestAI = null;
+        distance = 100000;
+        if (AIs.Length == 0) return;
+        foreach (AIMovement ai in AIs)
+        {
+            if (ai.isDead) continue;
+            float dist = Vector2.Distance(ai.transform.position, player.transform.position);
+            if (dist > range) continue;
+            bool flag = player.transform.rotation.y == 180;
+            if (ai.gameObject.transform.position.x <= player.transform.position.x - 1 && !flag)
+                continue;
+            if (ai.gameObject.transform.position.x >= player.transform.position.x + 1 && flag)
+                continue;
+            if (dist <= distance)
+            {
+                distance = dist;
+                nearestAI = ai;
+            }
+        }
     }
 }
