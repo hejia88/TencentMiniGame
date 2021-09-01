@@ -233,11 +233,20 @@ public class PlayerMovement : MonoBehaviour
             }
             ai.isLocked = false;
         }
-        if (nearestAI != null && Input.GetKeyDown(KeyCode.E))
+//         if (nearestAI != null && Input.GetKeyDown(KeyCode.E))
+//         {
+//             anim.SetTrigger("Attack");
+//             nearestAI.Die();
+//             FadeToColor(attackButton.colors.pressedColor);
+//         }
+        if (Input.GetKeyDown(KeyCode.E))
         {
             anim.SetTrigger("Attack");
-            nearestAI.Die();
             FadeToColor(attackButton.colors.pressedColor);
+            if (nearestAI != null)
+            {
+                nearestAI.Die();
+            }
         }
         else if (Input.GetKeyUp(KeyCode.E))
         {

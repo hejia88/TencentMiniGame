@@ -28,7 +28,7 @@ public class AIMovement : MonoBehaviour
     private Animator anim;
     private STATES state = STATES.IDLE;
     private Vector2 dir = Vector2.up;
-    private Color lockedColor = Color.red;
+    private Color lockedColor = new Color(0.3410021f, 0.60746f, 0.745283f);
     private Color normalColor = new Color(0.3410021f, 0.60746f, 0.745283f);
     [HideInInspector] public bool isLocked = false;
     private SpriteRenderer spriteRenderer;
