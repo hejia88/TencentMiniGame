@@ -1,0 +1,286 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class PlayerMovement : MonoBehaviour
+{
+    public enum PLAYER_DIRECTIONS
+    {
+        UP,
+        UPRIGHT,
+        RIGHT,
+        BOTTOMRIGHT,
+        BOTTOM,
+        BOTTOMLEFT,
+        LEFT,
+        UPLEFT,
+    }
+    public enum STATES
+    {
+        IDLE,
+        WALKING,
+        RUNNING,
+        DEATH,
+    }
+
+    //Animations
+    //----------------------------
+    private Animator anim;
+    private STATES state = STATES.IDLE; private PLAYER_DIRECTIONS currentDir = 0;
+    private bool isRunning = false;
+    private float Direction;
+    //----------------------------
+
+    //Joystick Controls
+    //----------------------------
+    private bool IsDragging = false;
+    private Vector2 StartPoint;
+    private Vector2 EndPoint;
+    [HideInInspector] public float HorizontalInput;
+    private float VerticalInput;
+    public GameObject InnerCircle;
+    public GameObject LeftOuterCircle;
+    public GameObject RightOuterCircle;
+    //----------------------------
+
+
+    //Movement Parameters
+    //----------------------------
+    private Rigidbody2D rb;
+    public GameObject player;
+    private Vector3 dir = Vector2.up;
+    public float playerSpeed = 5.0f;
+    public float wonderSpeed = 2.5f;
+    public float WonderTime = 2.0f;
+    private float WonderTimer = 0.0f;
+    public float WonderTimeOffset = 0.5f;
+    private float WonderOffset = 0.5f;
+    public float IdleTime = 1.0f;
+    private float IdleTimer = 0.0f;
+    public float IdleTimeOffset = 0.5f;
+    private float IdleOffset = 0.5f;
+    public float RotationDegree = 30.0f;
+    public float RotationDegreeOffset = 10.0f;
+    private float RotationOffset = 10.0f;
+    //----------------------------
+
+    //Attack
+    //----------------------------
+    public AIMovement[] AIs;
+    public AIMovement nearestAI;
+    private float distance = 100000;
+    public float range = 3.0f;
+    //----------------------------
+
+    //For Test Only
+    //----------------------------
+    public Button attackButton;
+    private Vector3 mousePos;
+    //----------------------------
+    private void Start()
+    {
+        rb = player.GetComponent<Rigidbody2D>();
+        anim = player.GetComponent<Animator>();
+        AIs = FindObjectsOfType<AIMovement>();
+    }
+    void Update()
+    {
+        mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        #region Joystick Position
+        if (Input.GetMouseButtonDown(0) && mousePos.x > -9 && mousePos.x < 9 && mousePos.y > -9 && mousePos.y < 9) //鼠标按下时(屏幕内)
+        {
+            transform.position = new Vector2(mousePos.x, mousePos.y);
+            StartPoint = new Vector2(mousePos.x, mousePos.y);
+            InnerCircle.transform.position = StartPoint;
+            InnerCircle.GetComponent<SpriteRenderer>().enabled = true;
+            LeftOuterCircle.GetComponent<SpriteRenderer>().enabled = true;
+            RightOuterCircle.GetComponent<SpriteRenderer>().enabled = true;
+            IsDragging = true;
+        }
+        else if (Input.GetMouseButtonDown(0) && (mousePos.x > 9 || mousePos.x < -9 || mousePos.y > -9 || mousePos.y < 9)) //鼠标按下时(屏幕外)
+        {
+            transform.position = new Vector2(Mathf.Clamp(mousePos.x, -9, 9), Mathf.Clamp(mousePos.y, -9, 9));
+            StartPoint = new Vector2(mousePos.x, mousePos.y);
+            InnerCircle.transform.position = StartPoint;
+            InnerCircle.GetComponent<SpriteRenderer>().enabled = true;
+            LeftOuterCircle.GetComponent<SpriteRenderer>().enabled = true;
+            RightOuterCircle.GetComponent<SpriteRenderer>().enabled = true;
+            IsDragging = true;
+        }
+        if (Input.GetMouseButton(0) && IsDragging)
+        {
+            EndPoint = new Vector2(mousePos.x, mousePos.y);
+        }
+        if (Input.GetMouseButtonUp(0) && IsDragging)
+        {
+            IsDragging = false;
+            HorizontalInput = 0.0f;
+            VerticalInput = 0.0f;
+            state = STATES.IDLE;
+            IdleTimer = 0.0f;
+            WonderTimer = 0.0f;
+        }
+        #endregion
+        if (IsDragging)
+        {
+            Vector2 offset = EndPoint - StartPoint;
+            isRunning = offset.magnitude > 0.35f ? true : false;  //当处于外轮盘时选择方向,当处于内轮盘时取消移动
+            Direction = Quaternion.FromToRotation(offset, new Vector2(0, 1)).eulerAngles.z;
+            if (Direction > 337.5f || Direction < 22.5f)//上
+            {
+                currentDir = PLAYER_DIRECTIONS.UP;
+                HorizontalInput = 0.0f;
+                VerticalInput = 1.0f;
+            }
+            else if (Direction > 22.5f && Direction < 67.5f)//右上
+            {
+                currentDir = PLAYER_DIRECTIONS.UPRIGHT;
+                HorizontalInput = 1.0f;
+                VerticalInput = 1.0f;
+            }
+            else if (Direction > 67.5f && Direction < 112.5f)//右
+            {
+                currentDir = PLAYER_DIRECTIONS.RIGHT;
+                HorizontalInput = 1.0f;
+                VerticalInput = 0.0f;
+            }
+            else if (Direction > 112.5f && Direction < 157.5f)//右下
+            {
+                currentDir = PLAYER_DIRECTIONS.BOTTOMRIGHT;
+                HorizontalInput = 1.0f;
+                VerticalInput = -1.0f;
+            }
+            else if (Direction > 157.5f && Direction < 202.5f)//下
+            {
+                currentDir = PLAYER_DIRECTIONS.BOTTOM;
+                HorizontalInput = 0.0f;
+                VerticalInput = -1.0f;
+            }
+            else if (Direction > 202.5f && Direction < 247.5f)//左下
+            {
+                currentDir = PLAYER_DIRECTIONS.BOTTOMLEFT;
+                HorizontalInput = -1.0f;
+                VerticalInput = -1.0f;
+            }
+            else if (Direction > 247.5f && Direction < 292.5f)//左
+            {
+                currentDir = PLAYER_DIRECTIONS.LEFT;
+                HorizontalInput = -1.0f;
+                VerticalInput = 0.0f;
+            }
+            else if (Direction > 292.5f && Direction < 337.5f)//左上
+            {
+                currentDir = PLAYER_DIRECTIONS.UPLEFT;
+                HorizontalInput = -1.0f;
+                VerticalInput = 1.0f;
+            }
+            Vector2 dir = Vector2.ClampMagnitude(offset, 1.75f);
+            InnerCircle.transform.position = new Vector2(StartPoint.x + dir.x, StartPoint.y + dir.y);
+        }
+        else
+        {
+            InnerCircle.GetComponent<SpriteRenderer>().enabled = false;
+            LeftOuterCircle.GetComponent<SpriteRenderer>().enabled = false;
+            RightOuterCircle.GetComponent<SpriteRenderer>().enabled = false;
+        }
+        #region PlayerMovement
+        if (HorizontalInput != 0.0f || VerticalInput != 0.0f)
+        {
+            rb.velocity = new Vector3(HorizontalInput, VerticalInput).normalized * playerSpeed;
+            //player.transform.position += new Vector3(HorizontalInput, VerticalInput).normalized * playerSpeed * Time.deltaTime;
+            player.transform.rotation = HorizontalInput < 0 ? Quaternion.Euler(0, 180, 0) : Quaternion.Euler(0, 0, 0);
+        }
+        else
+        {
+            //AI移动逻辑
+            if (state == STATES.IDLE)
+            {
+                IdleTimer += Time.deltaTime;
+                if (IdleTimer >= IdleTime + IdleOffset)
+                {
+                    IdleTimer -= IdleTime;
+                    state = STATES.WALKING;
+                    IdleOffset = Random.Range(-IdleTimeOffset, IdleTimeOffset);
+                    dir = Quaternion.AngleAxis(RotationDegree + RotationOffset, Vector3.forward) * dir;
+                    RotationOffset = Random.Range(-RotationDegreeOffset, RotationDegreeOffset);
+                }
+                rb.velocity = Vector2.zero;
+            }
+            if (state == STATES.WALKING)
+            {
+                WonderTimer += Time.deltaTime;
+                if (WonderTimer >= WonderTime + WonderOffset)
+                {
+                    WonderTimer -= WonderTime;
+                    state = STATES.IDLE;
+                    WonderOffset = Random.Range(-WonderTimeOffset, WonderTimeOffset);
+                }
+                //player.transform.position += dir * wonderSpeed * Time.deltaTime;
+                rb.velocity = dir * wonderSpeed;
+                player.transform.rotation = dir.x < 0 ? Quaternion.Euler(0, 180, 0) : Quaternion.Euler(0, 0, 0);
+            }
+        }
+        #endregion
+        #region PlayerAttack
+        GetNearest();
+        foreach (AIMovement ai in AIs)
+        {
+            if (ai == nearestAI)
+            {
+                ai.isLocked = true;
+                continue;
+            }
+            ai.isLocked = false;
+        }
+//         if (nearestAI != null && Input.GetKeyDown(KeyCode.E))
+//         {
+//             anim.SetTrigger("Attack");
+//             nearestAI.Die();
+//             FadeToColor(attackButton.colors.pressedColor);
+//         }
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            anim.SetTrigger("Attack");
+            FadeToColor(attackButton.colors.pressedColor);
+            if (nearestAI != null)
+            {
+                nearestAI.Die();
+            }
+        }
+        else if (Input.GetKeyUp(KeyCode.E))
+        {
+            FadeToColor(attackButton.colors.normalColor);
+        }
+        #endregion
+    }
+
+    void FadeToColor(Color color)
+    {
+        Graphic graphic = attackButton.GetComponent<Graphic>();
+        graphic.CrossFadeColor(color, attackButton.colors.fadeDuration, true, true);
+    }
+
+    void GetNearest()
+    {
+        nearestAI = null;
+        distance = 100000;
+        if (AIs.Length == 0) return;
+        foreach (AIMovement ai in AIs)
+        {
+            if (ai.isDead) continue;
+            float dist = Vector2.Distance(ai.transform.position, player.transform.position);
+            if (dist > range) continue;
+            bool flag = player.transform.rotation.y == 180;
+            if (ai.gameObject.transform.position.x <= player.transform.position.x - 1 && !flag)
+                continue;
+            if (ai.gameObject.transform.position.x >= player.transform.position.x + 1 && flag)
+                continue;
+            if (dist <= distance)
+            {
+                distance = dist;
+                nearestAI = ai;
+            }
+        }
+    }
+}
