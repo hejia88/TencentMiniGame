@@ -14,9 +14,16 @@ public class PlayerAnimatorManager : MonoBehaviourPun
 
     private Animator animator;
 
+    
+
     #endregion
 
     #region MonoBehaviour Callbacks
+    
+    void Awake()
+    {
+        
+    }
 
     void Start()
     {

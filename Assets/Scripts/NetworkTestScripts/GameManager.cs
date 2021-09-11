@@ -63,9 +63,16 @@ namespace Com.Tencent.DYYS
             }
             else
             {
-                Debug.LogFormat("We are Instantiating LocalPlayer from {0}", SceneManagerHelper.ActiveSceneName);
-                // we're in a room. spawn a character for the local player. it gets synced by using PhotonNetwork.Instantiate
-                PhotonNetwork.Instantiate(this.playerPrefab.name, new Vector3(0f, 5f, 0f), Quaternion.identity, 0);
+                if (Character.LocalPlayerInstance == null)
+                {
+                    Debug.LogFormat("We are Instantiating LocalPlayer from {0}", SceneManagerHelper.ActiveSceneName);
+                    // we're in a room. spawn a character for the local player. it gets synced by using PhotonNetwork.Instantiate
+                    PhotonNetwork.Instantiate(this.playerPrefab.name, new Vector3(0f, 0.5f, 20.0f), Quaternion.identity, 0);
+                }
+                else
+                {
+                    Debug.LogFormat("Ignoring scene load for {0}", SceneManagerHelper.ActiveSceneName);
+                }
             }
         }
 
@@ -80,8 +87,8 @@ namespace Com.Tencent.DYYS
             {
                 Debug.LogError("PhotonNetwork : Trying to Load a level but we are not the master Client");
             }
-            Debug.LogFormat("PhotonNetwork : Loading Level : New Scene");
-            PhotonNetwork.LoadLevel("New Scene");
+            Debug.LogFormat("PhotonNetwork : Loading Level : NWT_Art3DScene");
+            PhotonNetwork.LoadLevel("NWT_Art3DScene");
         }
 
         #endregion

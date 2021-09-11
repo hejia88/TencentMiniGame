@@ -5,7 +5,16 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/NetworkTestScenes/DYYS_Launcher.unity
+    guid: 77696a61cb3c70c468d01aa112be3c32
+  - enabled: 1
+    path: Assets/Scenes/NetworkTestScenes/NWT_Art3DScene.unity
+    guid: 680079a4b43a3a343a74ad94676d4104
+  - enabled: 1
+    path: Assets/Scenes/NetworkTestScenes/New Scene.unity
+    guid: 526d1728b6507224ba2f06442b5eb355
   m_configObjects: {}
