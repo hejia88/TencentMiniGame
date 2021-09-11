@@ -3,11 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-enum ItemType
-{
-    ActiveItem,
-    PassiveItem
-}
+
 
 public class ItemManager : MonoBehaviour
 {
@@ -20,17 +16,15 @@ public class ItemManager : MonoBehaviour
 
     private List<int> list_FreshPointState;
     private Dictionary<GameObject,int> dict_ItemInScene;
-    private List<GameObject> list_ItemInScene;
 
     // Start is called before the first frame update
     void Start()
     {
         currentTime = 0;
         list_FreshPointState = new List<int>();
-        list_ItemInScene = new List<GameObject>();
         dict_ItemInScene = new Dictionary<GameObject, int>();
 
-        Debug.Log(string.Format("Substract--{0}", prefab_FreshPointList.Count));
+        Debug.Log(string.Format("Start--{0}", prefab_FreshPointList.Count));
         for (int i=0; i< prefab_FreshPointList.Count; i++)
         {
             //-1表示数据配置有误，prefab是null
@@ -51,7 +45,6 @@ public class ItemManager : MonoBehaviour
         if(currentTime > RefreshCD)
         {
             currentTime = 0;
-            Substract();
             RefreshPoints();
         }
     }
@@ -67,22 +60,21 @@ public class ItemManager : MonoBehaviour
                 int ItemIndex = Random.Range(0, Prefab_ItemList.Count);
                 Transform pointTransform = prefab_FreshPointList[PointIndex].GetComponent<Transform>();
                 GameObject go = GameObject.Instantiate(Prefab_ItemList[ItemIndex], pointTransform);
+                //将item的管理接口挂过去方便销毁时调用接口
+                ItemBase item = go.GetComponent<ItemBase>();
+                item.Manager_Item = this;
+
                 dict_ItemInScene.Add(go, PointIndex);
-                list_ItemInScene.Add(go);
             }
         }
     }
-    void Substract()
+
+    public void ItemDestroy(GameObject go)
     {
-        for(int i=0;i< list_ItemInScene.Count;i++)
-        {
-            GameObject go = list_ItemInScene[i];
-            int PointIndex = dict_ItemInScene[go];
-            list_FreshPointState[PointIndex] = 0;
-            dict_ItemInScene.Remove(go);
-            GameObject.DestroyImmediate(go);
-            Debug.Log(string.Format("Substract{0}", dict_ItemInScene.Count));
-        }
-        list_ItemInScene.Clear();
+        int PointIndex = dict_ItemInScene[go];
+        list_FreshPointState[PointIndex] = 0;
+        dict_ItemInScene.Remove(go);
+        GameObject.Destroy(go);
+        Debug.Log(string.Format("ItemDestroy{0}", dict_ItemInScene.Count));
     }
 }
