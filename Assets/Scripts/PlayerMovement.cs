@@ -47,7 +47,7 @@ public class PlayerMovement : MonoBehaviour
 
     //Movement Parameters
     //----------------------------
-    private Rigidbody2D rb;
+    private Rigidbody rb;
     public GameObject player;
     private Vector3 dir = Vector2.up;
     public float playerSpeed = 5.0f;
@@ -80,32 +80,24 @@ public class PlayerMovement : MonoBehaviour
     //----------------------------
     private void Start()
     {
-        rb = player.GetComponent<Rigidbody2D>();
+        rb = player.GetComponent<Rigidbody>();
         anim = player.GetComponent<Animator>();
         AIs = FindObjectsOfType<AIMovement>();
     }
     void Update()
     {
-        mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        //mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        mousePos = Input.mousePosition;
         #region Joystick Position
-        if (Input.GetMouseButtonDown(0) && mousePos.x > -9 && mousePos.x < 9 && mousePos.y > -9 && mousePos.y < 9) //鼠标按下时(屏幕内)
+        if (Input.GetMouseButtonDown(0)) //鼠标按下时
         {
-            transform.position = new Vector2(mousePos.x, mousePos.y);
             StartPoint = new Vector2(mousePos.x, mousePos.y);
+            LeftOuterCircle.transform.position = StartPoint - new Vector2(75, 0);
+            RightOuterCircle.transform.position = StartPoint + new Vector2(75, 0);
             InnerCircle.transform.position = StartPoint;
-            InnerCircle.GetComponent<SpriteRenderer>().enabled = true;
-            LeftOuterCircle.GetComponent<SpriteRenderer>().enabled = true;
-            RightOuterCircle.GetComponent<SpriteRenderer>().enabled = true;
-            IsDragging = true;
-        }
-        else if (Input.GetMouseButtonDown(0) && (mousePos.x > 9 || mousePos.x < -9 || mousePos.y > -9 || mousePos.y < 9)) //鼠标按下时(屏幕外)
-        {
-            transform.position = new Vector2(Mathf.Clamp(mousePos.x, -9, 9), Mathf.Clamp(mousePos.y, -9, 9));
-            StartPoint = new Vector2(mousePos.x, mousePos.y);
-            InnerCircle.transform.position = StartPoint;
-            InnerCircle.GetComponent<SpriteRenderer>().enabled = true;
-            LeftOuterCircle.GetComponent<SpriteRenderer>().enabled = true;
-            RightOuterCircle.GetComponent<SpriteRenderer>().enabled = true;
+            InnerCircle.GetComponent<Image>().enabled = true;
+            LeftOuterCircle.GetComponent<Image>().enabled = true;
+            RightOuterCircle.GetComponent<Image>().enabled = true;
             IsDragging = true;
         }
         if (Input.GetMouseButton(0) && IsDragging)
@@ -175,21 +167,25 @@ public class PlayerMovement : MonoBehaviour
                 HorizontalInput = -1.0f;
                 VerticalInput = 1.0f;
             }
-            Vector2 dir = Vector2.ClampMagnitude(offset, 1.75f);
+            Vector2 dir = Vector2.ClampMagnitude(offset, 150.0f);
             InnerCircle.transform.position = new Vector2(StartPoint.x + dir.x, StartPoint.y + dir.y);
         }
         else
         {
-            InnerCircle.GetComponent<SpriteRenderer>().enabled = false;
-            LeftOuterCircle.GetComponent<SpriteRenderer>().enabled = false;
-            RightOuterCircle.GetComponent<SpriteRenderer>().enabled = false;
+            InnerCircle.GetComponent<Image>().enabled = false;
+            LeftOuterCircle.GetComponent<Image>().enabled = false;
+            RightOuterCircle.GetComponent<Image>().enabled = false;
         }
         #region PlayerMovement
         if (HorizontalInput != 0.0f || VerticalInput != 0.0f)
         {
-            rb.velocity = new Vector3(HorizontalInput, VerticalInput).normalized * playerSpeed;
-            //player.transform.position += new Vector3(HorizontalInput, VerticalInput).normalized * playerSpeed * Time.deltaTime;
-            player.transform.rotation = HorizontalInput < 0 ? Quaternion.Euler(0, 180, 0) : Quaternion.Euler(0, 0, 0);
+            //rb.velocity = new Vector3(HorizontalInput, VerticalInput).normalized * playerSpeed;
+            Vector3 moveDirection = VerticalInput * Vector3.forward + HorizontalInput * Vector3.right;
+            rb.MovePosition(player.transform.position + playerSpeed * Time.fixedDeltaTime * moveDirection);
+
+            //TODO:加入相机跟随逻辑
+            //临时移除玩家转向
+            //player.transform.rotation = HorizontalInput < 0 ? Quaternion.Euler(0, 180, 0) : Quaternion.Euler(0, 0, 0);
         }
         else
         {
