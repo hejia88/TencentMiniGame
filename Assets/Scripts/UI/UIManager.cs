@@ -10,15 +10,20 @@ public class UIManager : MonoBehaviour
     private Transform m_Transform;
 
     private Transform panel_ItemsTransform;
+    private Transform panel_HealthTransform;
 
     private Button btn_Pick;
     private Button btn_Use;
     private Image img_ActivateItemNum;
     private Image img_BtnUseBG;
     private Text txt_ActivateItemNum;
+    private Text txt_Health;
+    private Text txt_Lives;
 
     private Character m_localPlayer;
-    private ItemManager manager_Item;
+    private ItemManager manager_ItemScene;
+    private PlayerItem manager_ItemPlayer;
+    private PlayerHealth manager_PlayerHealth;
 
 
 
@@ -29,6 +34,7 @@ public class UIManager : MonoBehaviour
         
 
         panel_ItemsTransform = m_Transform.Find("ItemsPanel");
+        panel_HealthTransform = m_Transform.Find("HealthPanel");
 
         btn_Pick = panel_ItemsTransform.Find("btn_Pick").GetComponent<Button>();
         btn_Use = panel_ItemsTransform.Find("btn_Use").GetComponent<Button>();
@@ -36,10 +42,15 @@ public class UIManager : MonoBehaviour
         img_ActivateItemNum = panel_ItemsTransform.Find("img_ItemNum").GetComponent<Image>();
         txt_ActivateItemNum = img_ActivateItemNum.transform.Find("Text").GetComponent<Text>();
 
-        m_localPlayer = GameObject.Find("Character").GetComponent<Character>();
-        manager_Item = GameObject.Find("ItemManager").GetComponent<ItemManager>();
+        txt_Lives = panel_HealthTransform.Find("Lives").GetComponent<Text>();
+        txt_Health = panel_HealthTransform.Find("Health").GetComponent<Text>();
 
-        
+        m_localPlayer = GameObject.Find("Character").GetComponent<Character>();
+        manager_ItemScene = GameObject.Find("ItemManager").GetComponent<ItemManager>();
+        manager_ItemPlayer = GameObject.Find("PlayerManager").GetComponent<PlayerItem>();
+        manager_PlayerHealth = GameObject.Find("PlayerManager").GetComponent<PlayerHealth>();
+
+
 
 
         btn_Use.gameObject.SetActive(false);
@@ -53,6 +64,9 @@ public class UIManager : MonoBehaviour
     {
         btn_Pick.onClick.AddListener(OnBtnPickClick);
         btn_Use.onClick.AddListener(OnBtnUseClick);
+
+        txt_Lives.text = string.Format("{0}", manager_PlayerHealth.CurrentLives);
+        txt_Health.text = string.Format("{0}", manager_PlayerHealth.CurrentHealth);
     }
 
     // Update is called once per frame
@@ -63,11 +77,11 @@ public class UIManager : MonoBehaviour
 
     private void OnBtnPickClick()
     {
-        m_localPlayer.PickItem();
+        manager_ItemPlayer.PickItem();
     }
     private void OnBtnUseClick()
     {
-        m_localPlayer.UseItem();
+        manager_ItemPlayer.UseActivateItem();
     }
 
     public void HighlightBtnPick()
@@ -87,17 +101,17 @@ public class UIManager : MonoBehaviour
         btn_Use.gameObject.SetActive(false);
         img_ActivateItemNum.gameObject.SetActive(false);
     }
-    public void ShowBtnUse(ItemData InItemData)
+    public void ShowBtnUse(bool isActivateItem,int itemIndex,int itemCount)
     {
         btn_Pick.gameObject.SetActive(false);
         btn_Use.gameObject.SetActive(true);
 
-        img_BtnUseBG.sprite = manager_Item.list_UITexture[InItemData.ItemIndex];
-        if (InItemData.IsActivateItem)
+        img_BtnUseBG.sprite = manager_ItemScene.list_UITexture[itemIndex];
+        if (isActivateItem)
         {
             btn_Use.interactable = true;
             img_ActivateItemNum.gameObject.SetActive(true);
-            txt_ActivateItemNum.text = string.Format("{0}", InItemData.ItemCount);
+            txt_ActivateItemNum.text = string.Format("{0}", itemCount);
             
             img_BtnUseBG.color = pickHightLightColor;
         }
@@ -108,5 +122,14 @@ public class UIManager : MonoBehaviour
             img_ActivateItemNum.gameObject.SetActive(false);
             img_BtnUseBG.color = Color.white;
         }
+    }
+    public void UpdateHealth(int Health)
+    {
+        txt_Health.text = string.Format("{0}", manager_PlayerHealth.CurrentHealth);
+    }
+
+    public void UpdateLives(int lives)
+    {
+        txt_Lives.text = string.Format("{0}", manager_PlayerHealth.CurrentLives);
     }
 }

@@ -4,22 +4,28 @@ using UnityEngine;
 
 public class CameraFollow : MonoBehaviour
 {
-    public Transform player_Transform;
     private Transform m_Transform;
 
     public float distance;
+
+    private PlayerHealth manager_PlayerHealth;
 
     // Start is called before the first frame update
     void Start()
     {
         m_Transform = gameObject.GetComponent<Transform>();
 
-
+        manager_PlayerHealth = GameObject.Find("PlayerManager").GetComponent<PlayerHealth>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        m_Transform.position = player_Transform.position - distance * m_Transform.forward;
+        if(manager_PlayerHealth.LocalPlayer)
+        {
+            Transform player_Transform = manager_PlayerHealth.LocalPlayer.GetComponent<Transform>();
+            m_Transform.position = player_Transform.position - distance * m_Transform.forward;
+        }
+        
     }
 }

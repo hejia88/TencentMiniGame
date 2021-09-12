@@ -13,6 +13,7 @@ public class ItemManager : MonoBehaviour
     private float currentTime;
 
     public List<Sprite> list_UITexture;
+    public List<AudioClip> list_AudioClip;
     private List<int> list_FreshPointState;
     private Dictionary<GameObject,int> dict_Item2PointIndex;
 
@@ -22,6 +23,8 @@ public class ItemManager : MonoBehaviour
         currentTime = 0;
         list_FreshPointState = new List<int>();
         list_UITexture = new List<Sprite>();
+        list_AudioClip = new List<AudioClip>();
+
         dict_Item2PointIndex = new Dictionary<GameObject, int>();
 
 
@@ -40,7 +43,8 @@ public class ItemManager : MonoBehaviour
         {
             Sprite UITexture = Prefab_ItemList[i].GetComponent<ItemPrefab>().UItexture;
             list_UITexture.Add(UITexture);
-            Debug.Log(UITexture);
+            AudioClip audioClip = Prefab_ItemList[i].GetComponent<ItemPrefab>().AudioClip;
+            list_AudioClip.Add(audioClip);
         }
         RefreshPoints();
     }

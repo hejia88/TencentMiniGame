@@ -2,6 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum ItemType
+{
+    ActiveItem,
+    PassiveItem
+}
+public enum ItemName
+{
+    Others,
+    GoldenSilk
+}
+
 public class ItemPrefab : MonoBehaviour
 {
 
@@ -17,6 +28,11 @@ public class ItemPrefab : MonoBehaviour
 
     [Header("UI资源")]
     public Sprite  UItexture;
+
+    [Header("声音资源")]
+    public AudioClip AudioClip;
+
+    public ItemName ItemName;
 
     private int indexResource;
 
