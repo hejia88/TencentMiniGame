@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 enum ItemState
 {
@@ -10,7 +11,7 @@ enum ItemState
     Owning
 }
 
-public class Character : MonoBehaviour
+public class Character : MonoBehaviourPun
 {
     private Transform m_Transform;
     private Rigidbody m_Rigidbody;
@@ -22,6 +23,21 @@ public class Character : MonoBehaviour
 
     private ItemState m_ItemState;
     private ItemData m_Item;
+
+    public static GameObject LocalPlayerInstance;
+
+
+    void Awake()
+    {
+        if (PhotonNetwork.IsConnected == true)
+        {
+            if (photonView.IsMine == true)
+            {
+                Character.LocalPlayerInstance = this.gameObject;
+            }
+            DontDestroyOnLoad(this.gameObject);
+        }
+    }
 
 
     // Start is called before the first frame update
@@ -41,6 +57,11 @@ public class Character : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (PhotonNetwork.IsConnected == true && photonView.IsMine == false)
+        {
+            return;
+        }
+
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
 
