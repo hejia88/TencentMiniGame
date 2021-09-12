@@ -16,11 +16,14 @@ public class Character : MonoBehaviourPun
 
     void Awake()
     {
-        if (photonView.IsMine)
+        if(PhotonNetwork.IsConnected == true)
         {
-            Character.LocalPlayerInstance = this.gameObject;
+            if (photonView.IsMine == true)
+            {
+                Character.LocalPlayerInstance = this.gameObject;
+            }
+            DontDestroyOnLoad(this.gameObject);
         }
-        DontDestroyOnLoad(this.gameObject);
     }
 
     // Start is called before the first frame update
@@ -33,7 +36,7 @@ public class Character : MonoBehaviourPun
     // Update is called once per frame
     void Update()
     {
-        if (photonView.IsMine == false && PhotonNetwork.IsConnected == true)
+        if (PhotonNetwork.IsConnected == true && photonView.IsMine == false)
         {
             return;
         }
