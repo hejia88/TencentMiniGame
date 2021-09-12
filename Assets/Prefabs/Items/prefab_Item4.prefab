@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2393774468430754934}
   m_Layer: 0
   m_Name: prefab_Item4
-  m_TagString: Untagged
+  m_TagString: Items
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -95,7 +95,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 0.2}
+  m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &2393774468430754934
 MonoBehaviour:
@@ -109,6 +109,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2c65356522c920499a1c994fb3ba562, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Itemtype: 0
-  m_UsageCount: 0
-  m_PickDistance: 1
+  Itemtype: 1
+  UsageCount: 0
+  PickDistance: 1
+  UItexture: {fileID: 21300000, guid: 615f3cdaa1374bd4db14286066f31cde, type: 3}

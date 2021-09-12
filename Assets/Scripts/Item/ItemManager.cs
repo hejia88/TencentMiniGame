@@ -2,27 +2,28 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
-
-
 public class ItemManager : MonoBehaviour
 {
     public List<GameObject> prefab_FreshPointList;
     public List<GameObject> Prefab_ItemList;
+    
     public int MaxRefreshNum;
     public float RefreshCD;
 
     private float currentTime;
 
+    public List<Sprite> list_UITexture;
     private List<int> list_FreshPointState;
-    private Dictionary<GameObject,int> dict_ItemInScene;
+    private Dictionary<GameObject,int> dict_Item2PointIndex;
 
     // Start is called before the first frame update
     void Start()
     {
         currentTime = 0;
         list_FreshPointState = new List<int>();
-        dict_ItemInScene = new Dictionary<GameObject, int>();
+        list_UITexture = new List<Sprite>();
+        dict_Item2PointIndex = new Dictionary<GameObject, int>();
+
 
         Debug.Log(string.Format("Start--{0}", prefab_FreshPointList.Count));
         for (int i=0; i< prefab_FreshPointList.Count; i++)
@@ -34,6 +35,12 @@ public class ItemManager : MonoBehaviour
                 //0表示该刷新点没有东西
                 list_FreshPointState[i] = 0;
             }          
+        }
+        for(int i=0;i< Prefab_ItemList.Count;i++)
+        {
+            Sprite UITexture = Prefab_ItemList[i].GetComponent<ItemPrefab>().UItexture;
+            list_UITexture.Add(UITexture);
+            Debug.Log(UITexture);
         }
         RefreshPoints();
     }
@@ -51,7 +58,7 @@ public class ItemManager : MonoBehaviour
 
     void RefreshPoints()
     {
-        while (dict_ItemInScene.Count < MaxRefreshNum)
+        if (dict_Item2PointIndex.Count < MaxRefreshNum)
         {
             int PointIndex = Random.Range(0, prefab_FreshPointList.Count);
             if (list_FreshPointState[PointIndex] == 0)
@@ -61,20 +68,21 @@ public class ItemManager : MonoBehaviour
                 Transform pointTransform = prefab_FreshPointList[PointIndex].GetComponent<Transform>();
                 GameObject go = GameObject.Instantiate(Prefab_ItemList[ItemIndex], pointTransform);
                 //将item的管理接口挂过去方便销毁时调用接口
-                ItemBase item = go.GetComponent<ItemBase>();
+                ItemPrefab item = go.GetComponent<ItemPrefab>();
                 item.Manager_Item = this;
+                item.IndexResource = ItemIndex;
 
-                dict_ItemInScene.Add(go, PointIndex);
+                dict_Item2PointIndex.Add(go, PointIndex);
             }
         }
     }
 
     public void ItemDestroy(GameObject go)
     {
-        int PointIndex = dict_ItemInScene[go];
+        int PointIndex = dict_Item2PointIndex[go];
         list_FreshPointState[PointIndex] = 0;
-        dict_ItemInScene.Remove(go);
+        dict_Item2PointIndex.Remove(go);
         GameObject.Destroy(go);
-        Debug.Log(string.Format("ItemDestroy{0}", dict_ItemInScene.Count));
+        Debug.Log(string.Format("ItemDestroy{0}", dict_Item2PointIndex.Count));
     }
 }
