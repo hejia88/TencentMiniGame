@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AIMovement : MonoBehaviour
+using Photon.Pun;
+
+public class AIMovement : MonoBehaviourPun
 {
     public enum PLAYER_DIRECTIONS
     {
@@ -64,6 +66,7 @@ public class AIMovement : MonoBehaviour
     void Update()
     {
         if (isDead) return;
+
         if (isLocked && spriteRenderer.color != lockedColor)
         {
             spriteRenderer.color = lockedColor;
@@ -72,6 +75,13 @@ public class AIMovement : MonoBehaviour
         {
             spriteRenderer.color = normalColor;
         }
+
+        //变色逻辑是单客户端的，移动逻辑是全局的，故在此判断 -shanexchen
+        if (PhotonNetwork.IsConnected && !PhotonNetwork.IsMasterClient)
+        {
+            return;
+        }
+
         if (state == STATES.IDLE)
         {
             IdleTimer += Time.deltaTime;
@@ -102,14 +112,30 @@ public class AIMovement : MonoBehaviour
 
     public void Die()
     {
+        PhotonView m_PhotonView = PhotonView.Get(this);
+        if (PhotonNetwork.IsConnected && m_PhotonView != null)
+        {
+            m_PhotonView.RPC("FinishedDie", RpcTarget.AllViaServer);
+        }
+        else
+        {
+            FinishedDie();
+        }
+    }
+
+    [PunRPC]
+    public void FinishedDie()
+    {
         //TODO:等待动画接入后加入Animator
         spriteRenderer.color = normalColor;
         isDead = true;
         //anim.SetBool("IsDead", true);
+
         Destroy(this, 0.5f);
         Destroy(gameObject, 0.5f);  //Temporary
         Destroy(GetComponent<Collider>());
         Destroy(GetComponent<Rigidbody>());
+
         //Destroy(GetComponent<Animator>(), 2.0f);
     }
 }

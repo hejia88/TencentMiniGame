@@ -102,8 +102,8 @@ namespace Com.Tencent.DYYS
             Debug.Log("PUN Basics Tutorial/Launcher: OnJoinedRoom() called by PUN. Now this client is in a room.");
             if (PhotonNetwork.CurrentRoom.PlayerCount == 1)
             {
-                Debug.Log("We load the NWT_Art3DScene");
-                PhotonNetwork.LoadLevel("NWT_Art3DScene");
+                Debug.Log("We load the Art3DScene");
+                PhotonNetwork.LoadLevel("Art3DScene");
             }
         }
 

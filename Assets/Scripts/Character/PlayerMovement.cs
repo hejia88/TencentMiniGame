@@ -69,8 +69,10 @@ public class PlayerMovement : MonoBehaviourPun
 
     //Attack
     //----------------------------
-    [HideInInspector] public AIMovement[] AIs;
-    [HideInInspector] public AIMovement nearestAI;
+    [HideInInspector] 
+    public static AIMovement[] AIs;
+    [HideInInspector] 
+    public AIMovement nearestAI;
     private float distance = 100000;
     public float range = 3.0f;
     //----------------------------
@@ -99,8 +101,9 @@ public class PlayerMovement : MonoBehaviourPun
             {
                 PlayerMovement.LocalPlayerInstance = this.gameObject;
             }
-            //DontDestroyOnLoad(this.gameObject);
+            DontDestroyOnLoad(this.gameObject);
         }
+        ShowJoyStick(false);
     }
 
     private void Start()
@@ -126,9 +129,7 @@ public class PlayerMovement : MonoBehaviourPun
             LeftOuterCircle.transform.position = StartPoint - new Vector2(75, 0);
             RightOuterCircle.transform.position = StartPoint + new Vector2(75, 0);
             InnerCircle.transform.position = StartPoint;
-            InnerCircle.GetComponent<Image>().enabled = true;
-            LeftOuterCircle.GetComponent<Image>().enabled = true;
-            RightOuterCircle.GetComponent<Image>().enabled = true;
+            ShowJoyStick(true);
             IsDragging = true;
         }
         if (Input.GetMouseButton(0) && IsDragging)
@@ -202,9 +203,7 @@ public class PlayerMovement : MonoBehaviourPun
         }
         else
         {
-            InnerCircle.GetComponent<Image>().enabled = false;
-            LeftOuterCircle.GetComponent<Image>().enabled = false;
-            RightOuterCircle.GetComponent<Image>().enabled = false;
+            ShowJoyStick(false);
         }
         #endregion
         #region PlayerMovement
@@ -254,6 +253,10 @@ public class PlayerMovement : MonoBehaviourPun
         GetNearest();
         foreach (AIMovement ai in AIs)
         {
+            if(ai == null)
+            {
+                continue;
+            }
             if (ai == nearestAI)
             {
                 ai.isLocked = true;
@@ -297,8 +300,12 @@ public class PlayerMovement : MonoBehaviourPun
         if (AIs.Length == 0) return;
         foreach (AIMovement ai in AIs)
         {
+            if(ai == null)
+            {
+                continue;
+            }
             if (ai.isDead) continue;
-            float dist = Vector2.Distance(ai.transform.position, player.transform.position);
+            float dist = Vector2.Distance(ai.gameObject.transform.position, player.transform.position);
             if (dist > range) continue;
             bool flag = player.transform.rotation.y == 180;
             if (ai.gameObject.transform.position.x <= player.transform.position.x - 1 && !flag)
@@ -320,5 +327,12 @@ public class PlayerMovement : MonoBehaviourPun
             m_AudioSource.clip = audioClip;
             m_AudioSource.Play();
         }
+    }
+
+    void ShowJoyStick(bool IsShow)
+    {
+        InnerCircle.GetComponent<Image>().enabled = IsShow;
+        LeftOuterCircle.GetComponent<Image>().enabled = IsShow;
+        RightOuterCircle.GetComponent<Image>().enabled = IsShow;
     }
 }

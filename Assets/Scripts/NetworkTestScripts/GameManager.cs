@@ -52,18 +52,26 @@ namespace Com.Tencent.DYYS
         [Tooltip("The prefab to use for representing the player")]
         public GameObject playerPrefab;
 
-        public static GameManager Instance;
+        public GameObject ItemManagePrefab;
+
+        public static GameManager GameManagerInstance;
+
+        private ItemManager ItemManagerInstance;
 
         void Start()
         {
-            Instance = this;
+            GameManagerInstance = this;
+            if(ItemManagePrefab != null)
+            {
+                ItemManagerInstance = ItemManagePrefab.GetComponent<ItemManager>();
+            }
             if (playerPrefab == null)
             {
                 Debug.LogError("<Color=Red><a>Missing</a></Color> playerPrefab Reference. Please set it up in GameObject 'Game Manager'", this);
             }
             else
             {
-                if (Character.LocalPlayerInstance == null)
+                if (PlayerMovement.LocalPlayerInstance == null)
                 {
                     Debug.LogFormat("We are Instantiating LocalPlayer from {0}", SceneManagerHelper.ActiveSceneName);
                     // we're in a room. spawn a character for the local player. it gets synced by using PhotonNetwork.Instantiate
@@ -87,8 +95,10 @@ namespace Com.Tencent.DYYS
             {
                 Debug.LogError("PhotonNetwork : Trying to Load a level but we are not the master Client");
             }
-            Debug.LogFormat("PhotonNetwork : Loading Level : NWT_Art3DScene");
-            PhotonNetwork.LoadLevel("NWT_Art3DScene");
+            PlayerMovement.AIs = FindObjectsOfType<AIMovement>();
+            ItemManagerInstance.InitItemManager();
+            Debug.LogFormat("PhotonNetwork : Loading Level : Art3DScene");
+            PhotonNetwork.LoadLevel("Art3DScene");
         }
 
         #endregion

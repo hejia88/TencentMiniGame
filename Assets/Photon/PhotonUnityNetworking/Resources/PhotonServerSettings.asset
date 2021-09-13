@@ -40,6 +40,10 @@ MonoBehaviour:
   - Fire
   - RespawnSpaceship
   - UpdateAITransform
+  - FinishKill
+  - Die
+  - DieOnAllClient
+  - FinishedDie
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

@@ -38,7 +38,6 @@ public class Character : MonoBehaviourPun
 
         manager_Item = GameObject.Find("PlayerManager").GetComponent<PlayerItem>();
         manager_Health = GameObject.Find("PlayerManager").GetComponent<PlayerHealth>();
-       
     }
 
     // Update is called once per frame
