@@ -29,7 +29,7 @@ public class AIMovement : MonoBehaviourPun
     //----------------------------
     private Animator anim;
     private STATES state = STATES.IDLE;
-    private Vector3 dir = Vector3.up;
+    private Vector3 dir = Vector3.right;
     private Color lockedColor = new Color(0.3410021f, 0.60746f, 0.745283f);
     private Color normalColor = new Color(0.3410021f, 0.60746f, 0.745283f);
     [HideInInspector] public bool isLocked = false;
@@ -90,7 +90,7 @@ public class AIMovement : MonoBehaviourPun
                 IdleTimer -= IdleTime;
                 state = STATES.WALKING;
                 IdleOffset = Random.Range(-IdleTimeOffset, IdleTimeOffset);
-                dir = Quaternion.AngleAxis(RotationDegree + RotationOffset, Vector3.forward) * dir;
+                dir = Quaternion.AngleAxis(RotationDegree + RotationOffset, Vector3.up) * dir;
                 RotationOffset = Random.Range(-RotationDegreeOffset, RotationDegreeOffset);
             }
             //rb.velocity = Vector2.zero;
