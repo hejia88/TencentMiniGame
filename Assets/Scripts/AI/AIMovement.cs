@@ -27,7 +27,7 @@ public class AIMovement : MonoBehaviour
     //----------------------------
     private Animator anim;
     private STATES state = STATES.IDLE;
-    private Vector2 dir = Vector2.up;
+    private Vector3 dir = Vector3.up;
     private Color lockedColor = new Color(0.3410021f, 0.60746f, 0.745283f);
     private Color normalColor = new Color(0.3410021f, 0.60746f, 0.745283f);
     [HideInInspector] public bool isLocked = false;
@@ -37,7 +37,7 @@ public class AIMovement : MonoBehaviour
 
     //Movement Parameters
     //----------------------------
-    private Rigidbody2D rb;
+    private Rigidbody rb;
     public float WonderTime = 2.0f;
     private float WonderTimer = 0.0f;
     public float WonderTimeOffset = 0.5f;
@@ -54,7 +54,7 @@ public class AIMovement : MonoBehaviour
 
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
+        rb = GetComponent<Rigidbody>();
         anim = GetComponent<Animator>();
         dir = Quaternion.Euler(0, RotationDegree + RotationOffset, 0) * dir;
         RotationOffset = Random.Range(-RotationDegreeOffset, RotationDegreeOffset);
@@ -83,7 +83,7 @@ public class AIMovement : MonoBehaviour
                 dir = Quaternion.AngleAxis(RotationDegree + RotationOffset, Vector3.forward) * dir;
                 RotationOffset = Random.Range(-RotationDegreeOffset, RotationDegreeOffset);
             }
-            rb.velocity = Vector2.zero;
+            //rb.velocity = Vector2.zero;
         }
         if (state == STATES.WALKING)
         {
@@ -94,20 +94,22 @@ public class AIMovement : MonoBehaviour
                 state = STATES.IDLE;
                 WonderOffset = Random.Range(-WonderTimeOffset, WonderTimeOffset);
             }
-            rb.velocity = dir * wonderSpeed;
-            //rb.position += dir * wonderSpeed * Time.deltaTime;
+            //rb.velocity = dir * wonderSpeed;
+            rb.MovePosition(transform.position + wonderSpeed * Time.fixedDeltaTime * dir);
             transform.rotation = dir.x < 0 ? Quaternion.Euler(0, 180, 0) : Quaternion.Euler(0, 0, 0);
         }
     }
 
     public void Die()
     {
+        //TODO:等待动画接入后加入Animator
         spriteRenderer.color = normalColor;
         isDead = true;
-        anim.SetBool("IsDead", true);
+        //anim.SetBool("IsDead", true);
         Destroy(this, 0.5f);
-        Destroy(GetComponent<Collider2D>());
-        Destroy(GetComponent<Rigidbody2D>());
-        Destroy(GetComponent<Animator>(), 2.0f);
+        Destroy(gameObject, 0.5f);  //Temporary
+        Destroy(GetComponent<Collider>());
+        Destroy(GetComponent<Rigidbody>());
+        //Destroy(GetComponent<Animator>(), 2.0f);
     }
 }

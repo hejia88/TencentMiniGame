@@ -3,22 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 
-
-public enum JobType
-{
-    StickMen,
-    BusinessMen,
-    PoliceMen,
-    FortuneTeller
-}
-
 public class Character : MonoBehaviourPun
 {
     public JobType m_JobType;
 
     private Transform m_Transform;
     private Rigidbody m_Rigidbody;
-    private AudioSource m_AudioSource;
 
     public float moveSpeed;
 
@@ -45,7 +35,6 @@ public class Character : MonoBehaviourPun
     {
         m_Transform = gameObject.GetComponent<Transform>();
         m_Rigidbody = gameObject.GetComponent<Rigidbody>();
-        m_AudioSource = gameObject.GetComponent<AudioSource>();
 
         manager_Item = GameObject.Find("PlayerManager").GetComponent<PlayerItem>();
         manager_Health = GameObject.Find("PlayerManager").GetComponent<PlayerHealth>();
@@ -103,13 +92,5 @@ public class Character : MonoBehaviourPun
         Debug.Log("PlayerDie");
         GameObject.Destroy(gameObject);
         
-    }
-    public void PlayAudio(AudioClip audioClip)
-    {
-        if(audioClip)
-        {
-            m_AudioSource.clip = audioClip;
-            m_AudioSource.Play();
-        }
     }
 }

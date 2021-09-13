@@ -21,9 +21,9 @@ public class CameraFollow : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(manager_PlayerHealth.LocalPlayer)
+        if(manager_PlayerHealth.Player)
         {
-            Transform player_Transform = manager_PlayerHealth.LocalPlayer.GetComponent<Transform>();
+            Transform player_Transform = manager_PlayerHealth.Player.GetComponent<Transform>();
             m_Transform.position = player_Transform.position - distance * m_Transform.forward;
         }
         

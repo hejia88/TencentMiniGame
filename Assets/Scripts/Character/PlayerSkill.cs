@@ -1,21 +1,31 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
-public class PlayerSkill : MonoBehaviour
+public enum JobType
+{
+    StickMen,
+    BusinessMen,
+    PoliceMen,
+    FortuneTeller
+}
+
+public class PlayerSkill : MonoBehaviourPun
 {
     [HideInInspector] public JobType jobType;
 
-    // Start is called before the first frame update
     void Start()
     {
         
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        if (PhotonNetwork.IsConnected == true && photonView.IsMine == false)
+        {
+            return;
+        }
     }
 
 

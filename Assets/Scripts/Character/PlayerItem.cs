@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using Photon.Pun;
 
 public enum ItemState
 {
@@ -10,14 +12,17 @@ public enum ItemState
     Owning
 }
 
-
-public class PlayerItem : MonoBehaviour
+public class PlayerItem : MonoBehaviourPun
 {
-    private UIManager manager_UI;
     private ItemManager manager_Item;
-    private PlayerHealth manager_PlayerHealth;
-
-    private ItemState m_ItemState;
+    public ItemState m_ItemState;
+    public GameObject Player;
+    public Button btn_Pick;
+    public Button btn_Use;
+    public Image img_ActivateItemNum;
+    public Image img_BtnUseBG;
+    public Text txt_ActivateItemNum;
+    public Color pickHightLightColor;
 
     public ItemState PickState
     {
@@ -29,25 +34,42 @@ public class PlayerItem : MonoBehaviour
     [HideInInspector] public int itemIndex;
     [HideInInspector] public ItemName itemName;
 
-    // Start is called before the first frame update
+    void Awake()
+    {
+        btn_Use.gameObject.SetActive(false);
+        img_ActivateItemNum.GetComponent<Image>().color = pickHightLightColor;
+        img_ActivateItemNum.gameObject.SetActive(false);
+    }
+
     void Start()
     {
-        manager_UI = GameObject.Find("UICanvas").GetComponent<UIManager>();
-        manager_Item = GameObject.Find("ItemManager").GetComponent<ItemManager>();
-        manager_PlayerHealth = GameObject.Find("PlayerManager").GetComponent<PlayerHealth>();
-
+        manager_Item = FindObjectOfType<ItemManager>();
         m_ItemState = ItemState.Nothing;
-
         isActivateItem = false;
         itemCount = 0;
         itemIndex = 0;
         itemName = ItemName.Others;
+        btn_Pick.onClick.AddListener(OnBtnPickClick);
+        btn_Use.onClick.AddListener(OnBtnUseClick);
+        //NormalBtnPick();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        if (PhotonNetwork.IsConnected == true && photonView.IsMine == false)
+        {
+            return;
+        }
+    }
+
+    private void OnBtnPickClick()
+    {
+        PickItem();
+    }
+
+    private void OnBtnUseClick()
+    {
+        UseActivateItem();
     }
 
     public void PickItem()
@@ -66,34 +88,33 @@ public class PlayerItem : MonoBehaviour
                     itemCount -= 1;
                     if (itemCount == 0)
                     {
-                        manager_UI.ShowBtnPick();
+                        ShowBtnPick();
                         m_ItemState = ItemState.Nothing;
                     }
                     else
                     {
-                        manager_UI.ShowBtnUse(isActivateItem,itemIndex,itemCount);
+                        ShowBtnUse(isActivateItem,itemIndex,itemCount);
                     }
                 }
             }
         }
     }
+
     public void PassiveItemUse()
     {
         if (m_ItemState == ItemState.Owning)
         {
             if (!isActivateItem)
             {
-                manager_UI.ShowBtnPick();
+                ShowBtnPick();
                 m_ItemState = ItemState.Nothing;
                 if(itemName == ItemName.GoldenSilk)
                 {
-                    Character LocalPlayer = manager_PlayerHealth.LocalPlayer.GetComponent<Character>();
-                    if(LocalPlayer)
+                    if(Player)
                     {
-                        LocalPlayer.PlayAudio(manager_Item.list_AudioClip[itemIndex]);
+                        Player.GetComponent<PlayerMovement>().PlayAudio(manager_Item.list_AudioClip[itemIndex]);
                     }
                 }
-
                 itemName = ItemName.Others;
             }
         }
@@ -103,7 +124,7 @@ public class PlayerItem : MonoBehaviour
     {
         if (m_ItemState == ItemState.WaitPick)
         {
-            manager_UI.NormalBtnPick();
+            NormalBtnPick();
             m_ItemState = ItemState.Nothing;
         }
     }
@@ -112,7 +133,7 @@ public class PlayerItem : MonoBehaviour
     {
         if (m_ItemState == ItemState.Nothing)
         {
-            manager_UI.HighlightBtnPick();
+            HighlightBtnPick();
             m_ItemState = ItemState.WaitPick;
         }
         if (m_ItemState == ItemState.Picking)
@@ -122,19 +143,77 @@ public class PlayerItem : MonoBehaviour
             SetItemData(Item);
             m_ItemState = ItemState.Owning;
 
-            manager_UI.NormalBtnPick();
+            NormalBtnPick();
             Debug.Log(string.Format("{0},{1},{2}", isActivateItem, itemIndex, itemCount));
-            manager_UI.ShowBtnUse(isActivateItem,itemIndex,itemCount);
-
-
+            ShowBtnUse(isActivateItem,itemIndex,itemCount);
             manager_Item.ItemDestroy(go);
         }
     }
+
     private void SetItemData(ItemPrefab InItemBase)
     {
         isActivateItem = (InItemBase.Itemtype == ItemType.ActiveItem);
         itemCount = InItemBase.UsageCount;
         itemIndex = InItemBase.IndexResource;
         itemName = InItemBase.ItemName;
+    }
+
+    public void HighlightBtnPick()
+    {
+        btn_Pick.interactable = true;
+        btn_Pick.GetComponent<Image>().color = pickHightLightColor;
+    }
+
+    public void NormalBtnPick()
+    {
+        btn_Pick.interactable = false;
+        btn_Pick.GetComponent<Image>().color = Color.white;
+    }
+
+    public void ShowBtnPick()
+    {
+        btn_Pick.interactable = false;
+        btn_Pick.gameObject.SetActive(true);
+        btn_Use.gameObject.SetActive(false);
+        img_ActivateItemNum.gameObject.SetActive(false);
+    }
+
+    public void ShowBtnUse(bool isActivateItem, int itemIndex, int itemCount)
+    {
+        btn_Pick.gameObject.SetActive(false);
+        btn_Use.gameObject.SetActive(true);
+
+        img_BtnUseBG.sprite = manager_Item.list_UITexture[itemIndex];
+        if (isActivateItem)
+        {
+            btn_Use.interactable = true;
+            img_ActivateItemNum.gameObject.SetActive(true);
+            txt_ActivateItemNum.text = string.Format("{0}", itemCount);
+
+            img_BtnUseBG.color = pickHightLightColor;
+        }
+        else
+        {
+            btn_Use.interactable = false;
+
+            img_ActivateItemNum.gameObject.SetActive(false);
+            img_BtnUseBG.color = Color.white;
+        }
+    }
+
+    private void OnTriggerExit(Collider coll)
+    {
+        if (coll.tag == "Items")
+        {
+            OnPlayerLeaveItem();
+        }
+    }
+
+    private void OnTriggerStay(Collider coll)
+    {
+        if (coll.tag == "Items")
+        {
+            OnPlayerStayItem(coll.gameObject);
+        }
     }
 }

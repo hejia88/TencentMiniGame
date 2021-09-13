@@ -1,46 +1,35 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
+using Photon.Pun;
 
-public class PlayerHealth : MonoBehaviour
+public class PlayerHealth : MonoBehaviourPun
 {
-
-    public int MaxHealth;
-    public int MaxLives;
-    public GameObject LocalPlayer;
-
-    public List<GameObject>  Prefab_PlayerList;
-
+    public int MaxHealth = 1;
+    public GameObject Player;
+//  public List<GameObject>  Prefab_PlayerList;
     [HideInInspector] public int CurrentHealth;
-    [HideInInspector] public int CurrentLives;
-
-    private Transform m_Transform;
-
-    private UIManager manager_UI;
-    private PlayerItem manager_ItemPlayer;
+    private PlayerItem Item;
+    public Text HealthText;
 
     private void Awake()
     {
         CurrentHealth = MaxHealth;
-        CurrentLives = MaxLives;
     }
 
-    // Start is called before the first frame update
     void Start()
     {
-        m_Transform = gameObject.GetComponent<Transform>();
-
-        manager_UI = GameObject.Find("UICanvas").GetComponent<UIManager>();
-        manager_ItemPlayer = m_Transform.GetComponent<PlayerItem>();
-
+        Item = GetComponent<PlayerItem>();
+        //txt_Lives.text = string.Format("{0}", manager_PlayerHealth.CurrentLives);
+        HealthText.text = string.Format("{0}", CurrentHealth);
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.N))
+        if (PhotonNetwork.IsConnected == true && photonView.IsMine == false)
         {
-            Spawn();
+            return;
         }
     }
 
@@ -48,9 +37,9 @@ public class PlayerHealth : MonoBehaviour
     {
         if (CurrentHealth > 0)
         {
-            if(manager_ItemPlayer.itemName==ItemName.GoldenSilk)
+            if(Item.itemName==ItemName.GoldenSilk)
             {
-                manager_ItemPlayer.PassiveItemUse();
+                Item.PassiveItemUse();
                 return;
             }
             CurrentHealth -= DamageAmount;
@@ -59,28 +48,19 @@ public class PlayerHealth : MonoBehaviour
                 CurrentHealth = 0;
                 Die();
             }
-            manager_UI.UpdateHealth(CurrentHealth);
-        }
-    }
-    public void Spawn()
-    {
-        if (CurrentLives > 0)
-        {
-            CurrentHealth = MaxHealth;
-            int ItemIndex = Random.Range(0, Prefab_PlayerList.Count);
-            LocalPlayer = GameObject.Instantiate(Prefab_PlayerList[ItemIndex], m_Transform);
-            manager_UI.UpdateHealth(CurrentHealth);
+            HealthText.text = string.Format("{0}", CurrentHealth);
         }
     }
 
+//  public void Spawn()
+//  {
+//       CurrentHealth = MaxHealth;
+//       int ItemIndex = Random.Range(0, Prefab_PlayerList.Count);
+//  }
+
     private void Die()
     {
-        if(CurrentLives>0)
-        {
-            CurrentLives -= 1;
-            LocalPlayer.GetComponent<Character>().PlayerDie();
-            LocalPlayer = null;
-            manager_UI.UpdateLives(CurrentLives);
-        }
+        //TODO: Add Animation
+        //TODO: Call GameManager function to spawn new player prefab
     }
 }

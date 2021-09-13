@@ -29,60 +29,9 @@ public class UIManager : MonoBehaviour
 
     void Awake()
     {
-        m_Transform = gameObject.GetComponent<Transform>();
-
-        
-
-        panel_ItemsTransform = m_Transform.Find("ItemsPanel");
-        panel_HealthTransform = m_Transform.Find("HealthPanel");
-
-        btn_Pick = panel_ItemsTransform.Find("btn_Pick").GetComponent<Button>();
-        btn_Use = panel_ItemsTransform.Find("btn_Use").GetComponent<Button>();
-        img_BtnUseBG = btn_Use.gameObject.GetComponent<Image>();
-        img_ActivateItemNum = panel_ItemsTransform.Find("img_ItemNum").GetComponent<Image>();
-        txt_ActivateItemNum = img_ActivateItemNum.transform.Find("Text").GetComponent<Text>();
-
-        txt_Lives = panel_HealthTransform.Find("Lives").GetComponent<Text>();
-        txt_Health = panel_HealthTransform.Find("Health").GetComponent<Text>();
-
-        m_localPlayer = GameObject.Find("Character").GetComponent<Character>();
-        manager_ItemScene = GameObject.Find("ItemManager").GetComponent<ItemManager>();
-        manager_ItemPlayer = GameObject.Find("PlayerManager").GetComponent<PlayerItem>();
-        manager_PlayerHealth = GameObject.Find("PlayerManager").GetComponent<PlayerHealth>();
-
-
-
-
-        btn_Use.gameObject.SetActive(false);
-        img_ActivateItemNum.GetComponent<Image>().color = pickHightLightColor;
-        img_ActivateItemNum.gameObject.SetActive(false);
-
     }
 
     // Start is called before the first frame update
-    void Start()
-    {
-        btn_Pick.onClick.AddListener(OnBtnPickClick);
-        btn_Use.onClick.AddListener(OnBtnUseClick);
-
-        txt_Lives.text = string.Format("{0}", manager_PlayerHealth.CurrentLives);
-        txt_Health.text = string.Format("{0}", manager_PlayerHealth.CurrentHealth);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    private void OnBtnPickClick()
-    {
-        manager_ItemPlayer.PickItem();
-    }
-    private void OnBtnUseClick()
-    {
-        manager_ItemPlayer.UseActivateItem();
-    }
 
     public void HighlightBtnPick()
     {
@@ -122,14 +71,5 @@ public class UIManager : MonoBehaviour
             img_ActivateItemNum.gameObject.SetActive(false);
             img_BtnUseBG.color = Color.white;
         }
-    }
-    public void UpdateHealth(int Health)
-    {
-        txt_Health.text = string.Format("{0}", manager_PlayerHealth.CurrentHealth);
-    }
-
-    public void UpdateLives(int lives)
-    {
-        txt_Lives.text = string.Format("{0}", manager_PlayerHealth.CurrentLives);
     }
 }

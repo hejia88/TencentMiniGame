@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Photon.Pun;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : MonoBehaviourPun
 {
     public enum PLAYER_DIRECTIONS
     {
@@ -27,7 +28,8 @@ public class PlayerMovement : MonoBehaviour
     //Animations
     //----------------------------
     private Animator anim;
-    private STATES state = STATES.IDLE; private PLAYER_DIRECTIONS currentDir = 0;
+    private STATES state = STATES.IDLE;
+    private PLAYER_DIRECTIONS currentDir = 0;
     private bool isRunning = false;
     private float Direction;
     //----------------------------
@@ -67,8 +69,8 @@ public class PlayerMovement : MonoBehaviour
 
     //Attack
     //----------------------------
-    public AIMovement[] AIs;
-    public AIMovement nearestAI;
+    [HideInInspector] public AIMovement[] AIs;
+    [HideInInspector] public AIMovement nearestAI;
     private float distance = 100000;
     public float range = 3.0f;
     //----------------------------
@@ -78,14 +80,43 @@ public class PlayerMovement : MonoBehaviour
     public Button attackButton;
     private Vector3 mousePos;
     //----------------------------
+
+    //Audio
+    //----------------------------
+    private AudioSource m_AudioSource;
+    //----------------------------
+    
+    //Back end Synchronize
+    //----------------------------
+    public static GameObject LocalPlayerInstance;
+    //----------------------------
+
+    void Awake()
+    {
+        if (PhotonNetwork.IsConnected == true)
+        {
+            if (photonView.IsMine == true)
+            {
+                PlayerMovement.LocalPlayerInstance = this.gameObject;
+            }
+            //DontDestroyOnLoad(this.gameObject);
+        }
+    }
+
     private void Start()
     {
         rb = player.GetComponent<Rigidbody>();
         anim = player.GetComponent<Animator>();
         AIs = FindObjectsOfType<AIMovement>();
+        m_AudioSource = player.GetComponent<AudioSource>();
     }
     void Update()
     {
+        if (PhotonNetwork.IsConnected == true && photonView.IsMine == false)
+        {
+            return;
+        }
+
         //mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         mousePos = Input.mousePosition;
         #region Joystick Position
@@ -113,7 +144,6 @@ public class PlayerMovement : MonoBehaviour
             IdleTimer = 0.0f;
             WonderTimer = 0.0f;
         }
-        #endregion
         if (IsDragging)
         {
             Vector2 offset = EndPoint - StartPoint;
@@ -176,6 +206,7 @@ public class PlayerMovement : MonoBehaviour
             LeftOuterCircle.GetComponent<Image>().enabled = false;
             RightOuterCircle.GetComponent<Image>().enabled = false;
         }
+        #endregion
         #region PlayerMovement
         if (HorizontalInput != 0.0f || VerticalInput != 0.0f)
         {
@@ -201,7 +232,7 @@ public class PlayerMovement : MonoBehaviour
                     dir = Quaternion.AngleAxis(RotationDegree + RotationOffset, Vector3.forward) * dir;
                     RotationOffset = Random.Range(-RotationDegreeOffset, RotationDegreeOffset);
                 }
-                rb.velocity = Vector2.zero;
+                //rb.velocity = Vector2.zero;
             }
             if (state == STATES.WALKING)
             {
@@ -212,9 +243,10 @@ public class PlayerMovement : MonoBehaviour
                     state = STATES.IDLE;
                     WonderOffset = Random.Range(-WonderTimeOffset, WonderTimeOffset);
                 }
-                //player.transform.position += dir * wonderSpeed * Time.deltaTime;
-                rb.velocity = dir * wonderSpeed;
-                player.transform.rotation = dir.x < 0 ? Quaternion.Euler(0, 180, 0) : Quaternion.Euler(0, 0, 0);
+                //rb.velocity = dir * wonderSpeed;
+                rb.MovePosition(player.transform.position + wonderSpeed * Time.fixedDeltaTime * dir);
+                //临时移除玩家转向
+                //player.transform.rotation = dir.x < 0 ? Quaternion.Euler(0, 180, 0) : Quaternion.Euler(0, 0, 0);
             }
         }
         #endregion
@@ -237,7 +269,8 @@ public class PlayerMovement : MonoBehaviour
 //         }
         if (Input.GetKeyDown(KeyCode.E))
         {
-            anim.SetTrigger("Attack");
+            //TODO:等待动画接入后加入Animator
+            //anim.SetTrigger("Attack");
             FadeToColor(attackButton.colors.pressedColor);
             if (nearestAI != null)
             {
@@ -277,6 +310,15 @@ public class PlayerMovement : MonoBehaviour
                 distance = dist;
                 nearestAI = ai;
             }
+        }
+    }
+
+    public void PlayAudio(AudioClip audioClip)
+    {
+        if (audioClip)
+        {
+            m_AudioSource.clip = audioClip;
+            m_AudioSource.Play();
         }
     }
 }
