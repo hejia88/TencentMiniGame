@@ -32,6 +32,9 @@ public class PlayerMovement : MonoBehaviourPun
     private PLAYER_DIRECTIONS currentDir = 0;
     private bool isRunning = false;
     private float Direction;
+
+    private Animator anim_AttackBtn;
+    public GameObject BG_AttackBtn;
     //----------------------------
 
     //Joystick Controls
@@ -112,6 +115,10 @@ public class PlayerMovement : MonoBehaviourPun
         anim = player.GetComponent<Animator>();
         AIs = FindObjectsOfType<AIMovement>();
         m_AudioSource = player.GetComponent<AudioSource>();
+
+        anim_AttackBtn = BG_AttackBtn.GetComponent<Animator>();
+        attackButton.onClick.AddListener(OnBtnAttackClick);
+
     }
     void Update()
     {
@@ -220,33 +227,33 @@ public class PlayerMovement : MonoBehaviourPun
         else
         {
             //AI移动逻辑
-            if (state == STATES.IDLE)
-            {
-                IdleTimer += Time.deltaTime;
-                if (IdleTimer >= IdleTime + IdleOffset)
-                {
-                    IdleTimer -= IdleTime;
-                    state = STATES.WALKING;
-                    IdleOffset = Random.Range(-IdleTimeOffset, IdleTimeOffset);
-                    dir = Quaternion.AngleAxis(RotationDegree + RotationOffset, Vector3.forward) * dir;
-                    RotationOffset = Random.Range(-RotationDegreeOffset, RotationDegreeOffset);
-                }
-                //rb.velocity = Vector2.zero;
-            }
-            if (state == STATES.WALKING)
-            {
-                WonderTimer += Time.deltaTime;
-                if (WonderTimer >= WonderTime + WonderOffset)
-                {
-                    WonderTimer -= WonderTime;
-                    state = STATES.IDLE;
-                    WonderOffset = Random.Range(-WonderTimeOffset, WonderTimeOffset);
-                }
-                //rb.velocity = dir * wonderSpeed;
-                rb.MovePosition(player.transform.position + wonderSpeed * Time.fixedDeltaTime * dir);
-                //临时移除玩家转向
-                //player.transform.rotation = dir.x < 0 ? Quaternion.Euler(0, 180, 0) : Quaternion.Euler(0, 0, 0);
-            }
+            //if (state == STATES.IDLE)
+            //{
+            //    IdleTimer += Time.deltaTime;
+            //    if (IdleTimer >= IdleTime + IdleOffset)
+            //    {
+            //        IdleTimer -= IdleTime;
+            //        state = STATES.WALKING;
+            //        IdleOffset = Random.Range(-IdleTimeOffset, IdleTimeOffset);
+            //        dir = Quaternion.AngleAxis(RotationDegree + RotationOffset, Vector3.forward) * dir;
+            //        RotationOffset = Random.Range(-RotationDegreeOffset, RotationDegreeOffset);
+            //    }
+            //    //rb.velocity = Vector2.zero;
+            //}
+            //if (state == STATES.WALKING)
+            //{
+            //    WonderTimer += Time.deltaTime;
+            //    if (WonderTimer >= WonderTime + WonderOffset)
+            //    {
+            //        WonderTimer -= WonderTime;
+            //        state = STATES.IDLE;
+            //        WonderOffset = Random.Range(-WonderTimeOffset, WonderTimeOffset);
+            //    }
+            //    //rb.velocity = dir * wonderSpeed;
+            //    rb.MovePosition(player.transform.position + wonderSpeed * Time.fixedDeltaTime * dir);
+            //    //临时移除玩家转向
+            //    //player.transform.rotation = dir.x < 0 ? Quaternion.Euler(0, 180, 0) : Quaternion.Euler(0, 0, 0);
+            //}
         }
         #endregion
         #region PlayerAttack
@@ -279,6 +286,7 @@ public class PlayerMovement : MonoBehaviourPun
             {
                 nearestAI.Die();
             }
+            ActivateAttackBtn();
         }
         else if (Input.GetKeyUp(KeyCode.E))
         {
@@ -305,7 +313,7 @@ public class PlayerMovement : MonoBehaviourPun
                 continue;
             }
             if (ai.isDead) continue;
-            float dist = Vector2.Distance(ai.gameObject.transform.position, player.transform.position);
+            float dist = Vector3.Distance(ai.gameObject.transform.position, player.transform.position);
             if (dist > range) continue;
             bool flag = player.transform.rotation.y == 180;
             if (ai.gameObject.transform.position.x <= player.transform.position.x - 1 && !flag)
@@ -334,5 +342,16 @@ public class PlayerMovement : MonoBehaviourPun
         InnerCircle.GetComponent<Image>().enabled = IsShow;
         LeftOuterCircle.GetComponent<Image>().enabled = IsShow;
         RightOuterCircle.GetComponent<Image>().enabled = IsShow;
+    }
+    private void OnBtnAttackClick()
+    {
+        anim_AttackBtn.SetTrigger("AttackButtonPress");
+        attackButton.interactable = false;
+    }
+    private void ActivateAttackBtn()
+    {
+        attackButton.interactable = true;
+        anim_AttackBtn.SetTrigger("AttackButtonActive");
+
     }
 }
