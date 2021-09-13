@@ -91,7 +91,7 @@ public class PlayerMovement : MonoBehaviourPun
     private AudioSource m_AudioSource;
     //----------------------------
     
-    //Back end Synchronize
+    //Back-end Synchronize
     //----------------------------
     public static GameObject LocalPlayerInstance;
     //----------------------------
@@ -117,7 +117,6 @@ public class PlayerMovement : MonoBehaviourPun
         m_AudioSource = player.GetComponent<AudioSource>();
 
         anim_AttackBtn = BG_AttackBtn.GetComponent<Animator>();
-        attackButton.onClick.AddListener(OnBtnAttackClick);
 
     }
     void Update()
@@ -227,33 +226,33 @@ public class PlayerMovement : MonoBehaviourPun
         else
         {
             //AI移动逻辑
-            //if (state == STATES.IDLE)
-            //{
-            //    IdleTimer += Time.deltaTime;
-            //    if (IdleTimer >= IdleTime + IdleOffset)
-            //    {
-            //        IdleTimer -= IdleTime;
-            //        state = STATES.WALKING;
-            //        IdleOffset = Random.Range(-IdleTimeOffset, IdleTimeOffset);
-            //        dir = Quaternion.AngleAxis(RotationDegree + RotationOffset, Vector3.forward) * dir;
-            //        RotationOffset = Random.Range(-RotationDegreeOffset, RotationDegreeOffset);
-            //    }
-            //    //rb.velocity = Vector2.zero;
-            //}
-            //if (state == STATES.WALKING)
-            //{
-            //    WonderTimer += Time.deltaTime;
-            //    if (WonderTimer >= WonderTime + WonderOffset)
-            //    {
-            //        WonderTimer -= WonderTime;
-            //        state = STATES.IDLE;
-            //        WonderOffset = Random.Range(-WonderTimeOffset, WonderTimeOffset);
-            //    }
-            //    //rb.velocity = dir * wonderSpeed;
-            //    rb.MovePosition(player.transform.position + wonderSpeed * Time.fixedDeltaTime * dir);
-            //    //临时移除玩家转向
-            //    //player.transform.rotation = dir.x < 0 ? Quaternion.Euler(0, 180, 0) : Quaternion.Euler(0, 0, 0);
-            //}
+            if (state == STATES.IDLE)
+            {
+                IdleTimer += Time.deltaTime;
+                if (IdleTimer >= IdleTime + IdleOffset)
+                {
+                    IdleTimer -= IdleTime;
+                    state = STATES.WALKING;
+                    IdleOffset = Random.Range(-IdleTimeOffset, IdleTimeOffset);
+                    dir = Quaternion.AngleAxis(RotationDegree + RotationOffset, Vector3.forward) * dir;
+                    RotationOffset = Random.Range(-RotationDegreeOffset, RotationDegreeOffset);
+                }
+                //rb.velocity = Vector2.zero;
+            }
+            if (state == STATES.WALKING)
+            {
+                WonderTimer += Time.deltaTime;
+                if (WonderTimer >= WonderTime + WonderOffset)
+                {
+                    WonderTimer -= WonderTime;
+                    state = STATES.IDLE;
+                    WonderOffset = Random.Range(-WonderTimeOffset, WonderTimeOffset);
+                }
+                //rb.velocity = dir * wonderSpeed;
+                rb.MovePosition(player.transform.position + wonderSpeed * Time.fixedDeltaTime * dir);
+                //临时移除玩家转向
+                //player.transform.rotation = dir.x < 0 ? Quaternion.Euler(0, 180, 0) : Quaternion.Euler(0, 0, 0);
+            }
         }
         #endregion
         #region PlayerAttack
@@ -271,22 +270,25 @@ public class PlayerMovement : MonoBehaviourPun
             }
             ai.isLocked = false;
         }
-//         if (nearestAI != null && Input.GetKeyDown(KeyCode.E))
-//         {
-//             anim.SetTrigger("Attack");
-//             nearestAI.Die();
-//             FadeToColor(attackButton.colors.pressedColor);
-//         }
-        if (Input.GetKeyDown(KeyCode.E))
+        //         if (nearestAI != null && Input.GetKeyDown(KeyCode.E))
+        //         {
+        //             anim.SetTrigger("Attack");
+        //             nearestAI.Die();
+        //             FadeToColor(attackButton.colors.pressedColor);
+        //         }
+        anim_AttackBtn.SetBool("IsActive", nearestAI);
+        attackButton.interactable = nearestAI;
+        if (Input.GetKeyDown(KeyCode.E) && nearestAI)
         {
             //TODO:等待动画接入后加入Animator
             //anim.SetTrigger("Attack");
             FadeToColor(attackButton.colors.pressedColor);
+            //attackButton.onClick.Invoke();
             if (nearestAI != null)
             {
                 nearestAI.Die();
             }
-            ActivateAttackBtn();
+            anim_AttackBtn.SetTrigger("AttackButtonPress");
         }
         else if (Input.GetKeyUp(KeyCode.E))
         {
@@ -342,16 +344,5 @@ public class PlayerMovement : MonoBehaviourPun
         InnerCircle.GetComponent<Image>().enabled = IsShow;
         LeftOuterCircle.GetComponent<Image>().enabled = IsShow;
         RightOuterCircle.GetComponent<Image>().enabled = IsShow;
-    }
-    private void OnBtnAttackClick()
-    {
-        anim_AttackBtn.SetTrigger("AttackButtonPress");
-        attackButton.interactable = false;
-    }
-    private void ActivateAttackBtn()
-    {
-        attackButton.interactable = true;
-        anim_AttackBtn.SetTrigger("AttackButtonActive");
-
     }
 }
