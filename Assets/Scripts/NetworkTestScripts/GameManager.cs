@@ -5,7 +5,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-
+using Cinemachine;
 using Photon.Pun;
 using Photon.Realtime;
 
@@ -58,13 +58,19 @@ namespace Com.Tencent.DYYS
 
         private ItemManager ItemManagerInstance;
 
+        void Awake()
+        {
+        }
+
         void Start()
         {
             GameManagerInstance = this;
-            if(ItemManagePrefab != null)
+
+            if (ItemManagePrefab != null)
             {
                 ItemManagerInstance = ItemManagePrefab.GetComponent<ItemManager>();
             }
+
             if (playerPrefab == null)
             {
                 Debug.LogError("<Color=Red><a>Missing</a></Color> playerPrefab Reference. Please set it up in GameObject 'Game Manager'", this);
@@ -75,7 +81,7 @@ namespace Com.Tencent.DYYS
                 {
                     Debug.LogFormat("We are Instantiating LocalPlayer from {0}", SceneManagerHelper.ActiveSceneName);
                     // we're in a room. spawn a character for the local player. it gets synced by using PhotonNetwork.Instantiate
-                    PhotonNetwork.Instantiate(this.playerPrefab.name, new Vector3(0f, 0.5f, 20.0f), Quaternion.identity, 0);
+                    PhotonNetwork.Instantiate(this.playerPrefab.name, new Vector3(.0f, .0f, .0f), new Quaternion(0, 1, 0, 0), 0);
                 }
                 else
                 {
