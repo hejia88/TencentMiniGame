@@ -31,7 +31,7 @@ public class AIMovement : MonoBehaviourPun
     private STATES state = STATES.IDLE;
     private Vector3 dir = Vector3.right;
     private Color lockedColor = new Color(0.990566f, 0.2669989f, 0.4508103f);
-    private Color normalColor = new Color(0.3410021f, 0.60746f, 0.745283f);
+    private Color normalColor = new Color(1.0f, 1.0f, 1.0f);
     [HideInInspector] public bool isLocked = false;
     private SpriteRenderer spriteRenderer;
     [HideInInspector] public bool isDead = false;

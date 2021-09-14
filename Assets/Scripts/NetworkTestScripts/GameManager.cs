@@ -1,10 +1,8 @@
 using System;
 using System.Collections;
-
-
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
 using Cinemachine;
 using Photon.Pun;
 using Photon.Realtime;
@@ -14,6 +12,7 @@ namespace Com.Tencent.DYYS
 {
     public class GameManager : MonoBehaviourPunCallbacks
     {
+        public List<PlayerMovement> Players;
         #region Photon Callbacks
 
         /// <summary>
@@ -81,7 +80,12 @@ namespace Com.Tencent.DYYS
                 {
                     Debug.LogFormat("We are Instantiating LocalPlayer from {0}", SceneManagerHelper.ActiveSceneName);
                     // we're in a room. spawn a character for the local player. it gets synced by using PhotonNetwork.Instantiate
-                    PhotonNetwork.Instantiate(this.playerPrefab.name, new Vector3(.0f, .0f, .0f), new Quaternion(0, 1, 0, 0), 0);
+                    var player = PhotonNetwork.Instantiate(this.playerPrefab.name, new Vector3(.0f, .0f, .0f), new Quaternion(0, 1, 0, 0), 0);
+                    Players.Add(player.GetComponent<PlayerMovement>());
+                    foreach (PlayerMovement pm in Players)
+                    {
+                        pm.LinkPlayers();
+                    }
                 }
                 else
                 {

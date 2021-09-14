@@ -57,7 +57,7 @@ namespace Com.Tencent.DYYS
         //----------------------------
         private Rigidbody rb;
         public GameObject player;
-        private Vector3 dir = Vector2.up;
+        private Vector3 dir = Vector3.right;
         public float playerSpeed = 5.0f;
         public float wonderSpeed = 2.5f;
         public float WonderTime = 2.0f;
@@ -77,10 +77,15 @@ namespace Com.Tencent.DYYS
         //----------------------------
         [HideInInspector]
         public static AIMovement[] AIs;
+        public PlayerMovement[] Players;
         [HideInInspector]
         public AIMovement nearestAI;
+        public PlayerMovement nearestPlayer;
         private float distance = 100000;
         public float range = 3.0f;
+        [HideInInspector] public bool isLocked = false;
+        private Color lockedColor = new Color(0.990566f, 0.2669989f, 0.4508103f);
+        private Color normalColor = new Color(1.0f, 1.0f, 1.0f);
         //----------------------------
 
         //For Test Only
@@ -140,6 +145,57 @@ namespace Com.Tencent.DYYS
         }
         void Update()
         {
+            #region Player Attack Check and Change Color
+            GetNearestAi();
+            GetNearestPlayer();
+            if (nearestAI && nearestPlayer)
+            {
+                if (Vector3.Distance(nearestAI.transform.position, transform.position) >= distance)
+                {
+                    nearestAI = null;
+                }
+                else
+                {
+                    nearestPlayer = null;
+                }
+            }
+            foreach (AIMovement ai in AIs)
+            {
+                if (ai == null)
+                {
+                    continue;
+                }
+                if (ai == nearestAI)
+                {
+                    ai.isLocked = true;
+                    continue;
+                }
+                ai.isLocked = false;
+            }
+            foreach (PlayerMovement pm in Players)
+            {
+                if (pm == null)
+                {
+                    continue;
+                }
+                if (pm == nearestPlayer)
+                {
+                    pm.isLocked = true;
+                    continue;
+                }
+                pm.isLocked = false;
+            }
+            anim_AttackBtn.SetBool("IsActive", nearestAI || nearestPlayer);
+            attackButton.interactable = nearestAI || nearestPlayer;
+            if (isLocked && GetComponent<SpriteRenderer>().color != lockedColor)
+            {
+                GetComponent<SpriteRenderer>().color = lockedColor;
+            }
+            else if (!isLocked && GetComponent<SpriteRenderer>().color != normalColor)
+            {
+                GetComponent<SpriteRenderer>().color = normalColor;
+            }
+            #endregion
             if (PhotonNetwork.IsConnected == true && photonView.IsMine == false)
             {
                 return;
@@ -235,7 +291,7 @@ namespace Com.Tencent.DYYS
             if (HorizontalInput != 0.0f || VerticalInput != 0.0f)
             {
                 //rb.velocity = new Vector3(HorizontalInput, VerticalInput).normalized * playerSpeed;
-                Vector3 moveDirection = VerticalInput * Vector3.forward + HorizontalInput * Vector3.right;
+                Vector3 moveDirection = (VerticalInput * Vector3.forward + HorizontalInput * Vector3.right).normalized;
                 rb.MovePosition(player.transform.position + playerSpeed * Time.fixedDeltaTime * moveDirection);
 
                 //TODO:加入相机跟随逻辑
@@ -253,7 +309,7 @@ namespace Com.Tencent.DYYS
                         IdleTimer -= IdleTime;
                         state = STATES.WALKING;
                         IdleOffset = Random.Range(-IdleTimeOffset, IdleTimeOffset);
-                        dir = Quaternion.AngleAxis(RotationDegree + RotationOffset, Vector3.forward) * dir;
+                        dir = Quaternion.AngleAxis(RotationDegree + RotationOffset, Vector3.up) * dir;
                         RotationOffset = Random.Range(-RotationDegreeOffset, RotationDegreeOffset);
                     }
                     //rb.velocity = Vector2.zero;
@@ -275,29 +331,7 @@ namespace Com.Tencent.DYYS
             }
             #endregion
             #region PlayerAttack
-            GetNearest();
-            foreach (AIMovement ai in AIs)
-            {
-                if (ai == null)
-                {
-                    continue;
-                }
-                if (ai == nearestAI)
-                {
-                    ai.isLocked = true;
-                    continue;
-                }
-                ai.isLocked = false;
-            }
-            //         if (nearestAI != null && Input.GetKeyDown(KeyCode.E))
-            //         {
-            //             anim.SetTrigger("Attack");
-            //             nearestAI.Die();
-            //             FadeToColor(attackButton.colors.pressedColor);
-            //         }
-            anim_AttackBtn.SetBool("IsActive", nearestAI);
-            attackButton.interactable = nearestAI;
-            if (Input.GetKeyDown(KeyCode.E) && nearestAI)
+            if (Input.GetKeyDown(KeyCode.E) && (nearestAI || nearestPlayer))
             {
                 //TODO:等待动画接入后加入Animator
                 //anim.SetTrigger("Attack");
@@ -306,6 +340,11 @@ namespace Com.Tencent.DYYS
                 if (nearestAI != null)
                 {
                     nearestAI.Die();
+                }
+                if (nearestPlayer != null)
+                {
+                    //TODO:等待动画接入后加入Animator，移除销毁逻辑
+                    Destroy(nearestPlayer.gameObject);
                 }
                 anim_AttackBtn.SetTrigger("AttackButtonPress");
             }
@@ -322,10 +361,10 @@ namespace Com.Tencent.DYYS
             graphic.CrossFadeColor(color, attackButton.colors.fadeDuration, true, true);
         }
 
-        void GetNearest()
+        void GetNearestAi()
         {
             nearestAI = null;
-            distance = 100000;
+            distance = range;
             if (AIs.Length == 0) return;
             foreach (AIMovement ai in AIs)
             {
@@ -349,6 +388,36 @@ namespace Com.Tencent.DYYS
             }
         }
 
+        void GetNearestPlayer()
+        {
+            nearestPlayer = null;
+            distance = range;
+            if (Players.Length == 0) return;
+            foreach (PlayerMovement pm in Players)
+            {
+                if (pm == GetComponent<PlayerMovement>())
+                {
+                    continue;
+                }
+                if (pm == null)
+                {
+                    continue;
+                }
+                float dist = Vector3.Distance(pm.gameObject.transform.position, pm.transform.position);
+                if (dist > range) continue;
+                bool flag = pm.transform.rotation.y == 180;
+                if (pm.gameObject.transform.position.x <= pm.transform.position.x - 1 && !flag)
+                    continue;
+                if (pm.gameObject.transform.position.x >= pm.transform.position.x + 1 && flag)
+                    continue;
+                if (dist <= distance)
+                {
+                    distance = dist;
+                    nearestPlayer = pm;
+                }
+            }
+        }
+
         public void PlayAudio(AudioClip audioClip)
         {
             if (audioClip)
@@ -363,6 +432,11 @@ namespace Com.Tencent.DYYS
             InnerCircle.GetComponent<Image>().enabled = IsShow;
             LeftOuterCircle.GetComponent<Image>().enabled = IsShow;
             RightOuterCircle.GetComponent<Image>().enabled = IsShow;
+        }
+
+        public void LinkPlayers()
+        {
+            Players = FindObjectsOfType<PlayerMovement>();
         }
     }
 }
