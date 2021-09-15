@@ -1292,7 +1292,7 @@ MonoBehaviour:
   LeftOuterCircle: {fileID: 7401334099977958019}
   RightOuterCircle: {fileID: 8542795668554602543}
   player: {fileID: 5428793012664893304}
-  playerSpeed: 10
+  playerSpeed: 6
   wonderSpeed: 6
   WonderTime: 2
   WonderTimeOffset: 0.5
