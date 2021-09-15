@@ -136,7 +136,7 @@ namespace Com.Tencent.DYYS
             {
                 if (photonView.IsMine == true) //&& GameManager.VirtualCameraInstance != null)
                 {
-                    VCInstance = GameObject.Instantiate(VirtualCameraPrefab, new Vector3(.0f, .0f, .0f), new Quaternion(0.317464918f, 0, 0, 0.948270023f));
+                    VCInstance = GameObject.Instantiate(VirtualCameraPrefab, new Vector3(.0f, .0f, .0f), new Quaternion(0.382683426f, 0, 0, 0.923879564f));
                     VirtualCameraInstance = VCInstance.GetComponent<CinemachineVirtualCamera>();
                     VirtualCameraInstance.Follow = gameObject.transform;
                     DontDestroyOnLoad(VCInstance);
