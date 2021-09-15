@@ -1300,8 +1300,11 @@ MonoBehaviour:
   IdleTimeOffset: 0.5
   RotationDegree: 30
   RotationDegreeOffset: 10
+  Players: []
   nearestAI: {fileID: 0}
+  nearestPlayer: {fileID: 0}
   range: 5
+  isLocked: 0
   attackButton: {fileID: 5507354251363886552}
   VirtualCameraPrefab: {fileID: 824386610498652073, guid: 5eed03f0d70c264418016b75060815d1,
     type: 3}

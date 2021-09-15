@@ -8,7 +8,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/NetworkTestScenes/DYYS_Launcher.unity
     guid: 77696a61cb3c70c468d01aa112be3c32
   - enabled: 0
@@ -17,6 +17,9 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/NetworkTestScenes/New Scene.unity
     guid: 526d1728b6507224ba2f06442b5eb355
+  - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: 40d06f0688d0c314489980af603ef1f4
   - enabled: 1
     path: Assets/Scenes/Art3DScene.unity
     guid: 46461f9c4db2c7c45b9665c7f862362d

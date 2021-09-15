@@ -139,12 +139,17 @@ namespace Com.Tencent.DYYS
                     VCInstance = GameObject.Instantiate(VirtualCameraPrefab, new Vector3(.0f, .0f, .0f), new Quaternion(0.317464918f, 0, 0, 0.948270023f));
                     VirtualCameraInstance = VCInstance.GetComponent<CinemachineVirtualCamera>();
                     VirtualCameraInstance.Follow = gameObject.transform;
+                    DontDestroyOnLoad(VCInstance);
                 }
-                DontDestroyOnLoad(VCInstance);
             }
         }
+
         void Update()
         {
+            if (PhotonNetwork.IsConnected == true && photonView.IsMine == false)
+            {
+                return;
+            }
             #region Player Attack Check and Change Color
             GetNearestAi();
             GetNearestPlayer();
@@ -196,10 +201,6 @@ namespace Com.Tencent.DYYS
                 GetComponent<SpriteRenderer>().color = normalColor;
             }
             #endregion
-            if (PhotonNetwork.IsConnected == true && photonView.IsMine == false)
-            {
-                return;
-            }
 
             //mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             mousePos = Input.mousePosition;
