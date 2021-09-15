@@ -20,7 +20,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MainMenu.unity
     guid: 40d06f0688d0c314489980af603ef1f4
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Art3DScene.unity
     guid: 46461f9c4db2c7c45b9665c7f862362d
+  - enabled: 1
+    path: Assets/Scenes/ATS6_0915.unity
+    guid: 9cc90d5b3b5581d4684b37ec74118e3c
   m_configObjects: {}

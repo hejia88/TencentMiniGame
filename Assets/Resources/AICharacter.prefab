@@ -75,7 +75,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: 4f5e42d5dd5c5cf4eaf35858c766af03, type: 3}
   m_Color: {r: 0.990566, g: 0.2669989, b: 0.45081025, a: 1}
   m_FlipX: 1
@@ -158,7 +158,6 @@ MonoBehaviour:
   observableSearch: 2
   ObservedComponents:
   - {fileID: -4234155183501209546}
-  - {fileID: 0}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0

@@ -80,7 +80,7 @@ namespace Com.Tencent.DYYS
                 {
                     Debug.LogFormat("We are Instantiating LocalPlayer from {0}", SceneManagerHelper.ActiveSceneName);
                     // we're in a room. spawn a character for the local player. it gets synced by using PhotonNetwork.Instantiate
-                    var player = PhotonNetwork.Instantiate(this.playerPrefab.name, new Vector3(.0f, .0f, .0f), new Quaternion(0, 1, 0, 0), 0);
+                    var player = PhotonNetwork.Instantiate(this.playerPrefab.name, new Vector3(.0f, 1.0f, 20.0f), new Quaternion(0, 1, 0, 0), 0);
                     Players.Add(player.GetComponent<PlayerMovement>());
                     foreach (PlayerMovement pm in Players)
                     {
@@ -107,8 +107,8 @@ namespace Com.Tencent.DYYS
             }
             PlayerMovement.AIs = FindObjectsOfType<AIMovement>();
             ItemManagerInstance.InitItemManager();
-            Debug.LogFormat("PhotonNetwork : Loading Level : Art3DScene");
-            PhotonNetwork.LoadLevel("Art3DScene");
+            Debug.LogFormat("PhotonNetwork : Loading Level : ATS6_0915");
+            PhotonNetwork.LoadLevel("ATS6_0915");
         }
 
         #endregion
