@@ -152,18 +152,19 @@ namespace Com.Tencent.DYYS
             }
             #region Player Attack Check and Change Color
             GetNearestAi();
-            GetNearestPlayer();
-            if (nearestAI && nearestPlayer)
-            {
-                if (Vector3.Distance(nearestAI.transform.position, transform.position) >= distance)
-                {
-                    nearestAI = null;
-                }
-                else
-                {
-                    nearestPlayer = null;
-                }
-            }
+            //等待后端支持玩家间查找
+            //GetNearestPlayer();
+            //if (nearestAI && nearestPlayer)
+            //{
+            //    if (Vector3.Distance(nearestAI.transform.position, transform.position) >= distance)
+            //    {
+            //        nearestAI = null;
+            //    }
+            //    else
+            //    {
+            //        nearestPlayer = null;
+            //    }
+            //}
             foreach (AIMovement ai in AIs)
             {
                 if (ai == null)
@@ -177,29 +178,31 @@ namespace Com.Tencent.DYYS
                 }
                 ai.isLocked = false;
             }
-            foreach (PlayerMovement pm in Players)
-            {
-                if (pm == null)
-                {
-                    continue;
-                }
-                if (pm == nearestPlayer)
-                {
-                    pm.isLocked = true;
-                    continue;
-                }
-                pm.isLocked = false;
-            }
+            //等待后端支持玩家间查找
+            //foreach (PlayerMovement pm in Players)
+            //{
+            //    if (pm == null)
+            //    {
+            //        continue;
+            //    }
+            //    if (pm == nearestPlayer)
+            //    {
+            //        pm.isLocked = true;
+            //        continue;
+            //    }
+            //    pm.isLocked = false;
+            //}
             anim_AttackBtn.SetBool("IsActive", nearestAI || nearestPlayer);
             attackButton.interactable = nearestAI || nearestPlayer;
-            if (isLocked && GetComponent<SpriteRenderer>().color != lockedColor)
-            {
-                GetComponent<SpriteRenderer>().color = lockedColor;
-            }
-            else if (!isLocked && GetComponent<SpriteRenderer>().color != normalColor)
-            {
-                GetComponent<SpriteRenderer>().color = normalColor;
-            }
+            //等待后端支持玩家间查找
+            //if (isLocked && GetComponent<SpriteRenderer>().color != lockedColor)
+            //{
+            //    GetComponent<SpriteRenderer>().color = lockedColor;
+            //}
+            //else if (!isLocked && GetComponent<SpriteRenderer>().color != normalColor)
+            //{
+            //    GetComponent<SpriteRenderer>().color = normalColor;
+            //}
             #endregion
 
             //mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
