@@ -248,7 +248,7 @@ Shader "NatureManufacture Shaders/Water River"
 			o.Smoothness = lerpResult592;
 			o.Occlusion = _AOPower;
 			float lerpResult208 = lerp( 0.0 , 1.0 , pow( saturate( pow( temp_output_89_0 , _WaterDepth ) ) , _WaterFalloffBorder ));
-			o.Alpha = lerpResult208;
+			o.Alpha = 0;
 		}
 
 		ENDCG

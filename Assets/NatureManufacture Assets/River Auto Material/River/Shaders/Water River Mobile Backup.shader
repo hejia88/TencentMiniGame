@@ -186,7 +186,7 @@
 			float2 panner607 = ( uv_WaterNormal + mulTime519 * (( (float)Direction723 == 1 ) ? _BigCascadeMainSpeed :  appendResult714 ));
 			float2 BigCascadeSpeedValueMain432 = panner607;
 			float3 lerpResult529 = lerp( lerpResult330 , BlendNormals( UnpackScaleNormal( tex2D( _WaterNormal, BigCascadeSpeedValueMix608 ) ,_BigCascadeNormalScale ) , UnpackScaleNormal( tex2D( _WaterNormal, BigCascadeSpeedValueMain432 ) ,_BigCascadeNormalScale ) ) , clampResult514);
-			o.Normal = (lerpResult529);
+			o.Normal = lerpResult529;
 			float4 ase_screenPos = float4( i.screenPos.xyz , i.screenPos.w + 0.00000000001 );
 			float4 ase_grabScreenPos = ASE_ComputeGrabScreenPos( ase_screenPos );
 			float4 ase_grabScreenPosNorm = ase_grabScreenPos / ase_grabScreenPos.w;
@@ -240,7 +240,7 @@
 			float lerpResult591 = lerp( _WaterSmoothness , _FoamSmoothness , temp_output_114_0);
 			float lerpResult593 = lerp( lerpResult591 , _SmallCascadeSmoothness , ( lerpResult580 * clampResult285 ));
 			float lerpResult592 = lerp( lerpResult593 , _BigCascadeSmoothness , ( lerpResult579 * clampResult514 ));
-			o.Smoothness = 0;
+			o.Smoothness = lerpResult592;
 			o.Occlusion = _AOPower;
 			float lerpResult208 = lerp( 0 , 1 , pow( saturate( pow( temp_output_89_0 , _WaterDepth ) ) , _WaterFalloffBorder ));
 			o.Alpha = lerpResult208;
