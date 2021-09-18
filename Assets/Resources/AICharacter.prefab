@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1459460831004152035}
   - component: {fileID: 1459460831004152034}
   - component: {fileID: 2633536253512233720}
+  - component: {fileID: 5968178344074322354}
   - component: {fileID: -9119331320345601343}
   - component: {fileID: -4234155183501209546}
   m_Layer: 9
@@ -138,6 +139,20 @@ MonoBehaviour:
   RotationDegree: 180
   RotationDegreeOffset: 30
   wonderSpeed: 6
+--- !u!114 &5968178344074322354
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1459460831004151838}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9bd857c106cefa047b12926d19911d4a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FixedObject: 1
+  isCharacter: 1
 --- !u!114 &-9119331320345601343
 MonoBehaviour:
   m_ObjectHideFlags: 0
