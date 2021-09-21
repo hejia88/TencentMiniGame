@@ -1,0 +1,67 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: ChinesePainting_MyMountain_Primary
+  m_Shader: {fileID: 4800000, guid: a3c519b6d51869e4cab22e4be19d58d7, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _CurvatureMap:
+        m_Texture: {fileID: 2800000, guid: 3fb5555964f2ced47a2b55be98b19a31, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _InteriorNoise:
+        m_Texture: {fileID: 2800000, guid: fd80123e4d00ad848b36808bcdbcf2bd, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _OutlineNoise:
+        m_Texture: {fileID: 2800000, guid: 3fb5555964f2ced47a2b55be98b19a31, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Ramp:
+        m_Texture: {fileID: 2800000, guid: fd80123e4d00ad848b36808bcdbcf2bd, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _StrokeTex:
+        m_Texture: {fileID: 2800000, guid: fd80123e4d00ad848b36808bcdbcf2bd, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - _BrushOffsetXNoise: 0.489
+    - _BrushOffsetXStroke: 0.657
+    - _BrushOffsetYNoise: 0.482
+    - _BrushOffsetYStroke: 0.53
+    - _BrushOffsetZNoise: 0.481
+    - _BrushOffsetZStroke: 0.496
+    - _CurveFactor: 9.47
+    - _Cuvthreshold: 0.496
+    - _InteriorNoiseLevel: 0.593
+    - _MaxOutlineZOffset: 1.08
+    - _Outline: 0.1
+    - _OutsideNoiseWidth: 1.615
+    - _OutsideStrokeDryness: 0.512
+    - _StrokeColorBias: 0.205
+    - _TextureScaleNoise: 1.51
+    - _TextureScaleStroke: 0.64
+    - _TriplanarBlendSharpnessNoise: 16.9
+    - _TriplanarBlendSharpnessStroke: 0.83
+    - _TriplanarOn: 0
+    - hstep: 1
+    - radius: 15.9
+    - resolution: 787.57
+    m_Colors:
+    - _StrokeColor: {r: 0, g: 0, b: 0, a: 1}
+  m_BuildTextureStacks: []
