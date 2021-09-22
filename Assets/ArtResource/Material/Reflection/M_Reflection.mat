@@ -19,6 +19,10 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - _FoamTexture:
+        m_Texture: {fileID: 2800000, guid: 581fcfd543a4445829bb923bace720da, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _MainTex:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -27,6 +31,8 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    m_Floats: []
+    m_Floats:
+    - _FoamScale: -2.5
+    - _FoamSpeed: 31.61
     m_Colors: []
   m_BuildTextureStacks: []

@@ -6,7 +6,7 @@
         _MainTex ("Albedo (RGB)", 2D) = "white" {}
         _Glossiness ("Smoothness", Range(0,1)) = 0.5
         _Metallic ("Metallic", Range(0,1)) = 0.0
-        // _ReflectionTex ("Texture", 2D) = "white" {}
+        _ReflectionTex ("Texture", 2D) = "white" {}
 
         [Header(Densities)]
         _DepthDensity ("Depth", Range(0.0, 1.0)) = 0.5
@@ -27,7 +27,7 @@
         _FarColor ("Far", Color) = (0.04, 0.27, 0.75, 1.0)
         
         [Header(Reflections)]
-        _ReflectionContribution ("Contribution", Range(0.0, 1.0)) = 1.0
+        _ReflectionContribution ("Contribution", Range(0.0, 15.0)) = 1.0
 
         [Header(Subsurface Scattering)]
         [HDR]
@@ -80,7 +80,8 @@
     }
     SubShader
     {
-        Tags { "RenderType"="Opaque" "Queue" = "Geometry+1"}
+        //Tags { "RenderType"="Opaque" "Queue" = "Geometry+1"}
+        Tags { "RenderType"="Opaque" "Queue" = "Geometry"}
 
         LOD 100
 
@@ -90,11 +91,11 @@
             "RenderType" = "Transparent"
         }
 
-        Stencil{
-            Ref 1
-            Comp always
-            Pass replace
-        }
+        // Stencil{
+        //     Ref 1
+        //     Comp always
+        //     Pass replace
+        // }
 
         GrabPass
         {
@@ -202,6 +203,7 @@
                 float3 worldPosition : TEXCOORD1;
                 float4 grabPosition : TEXCOORD2;
                 float3 reflectionDir : TEXCOORD3;
+                // float4 screenPosition : TEXCOORD4;
                 UNITY_FOG_COORDS(4)
             };
 
@@ -255,6 +257,7 @@
                 o.reflectionDir = reflect(-worldViewDir, worldNormal);
 
                 o.uv = v.uv;
+                // o.screenPosition = ComputeScreenPos(o.vertex);
                 // outpos = UnityObjectToClipPos(v.vertex);
                 UNITY_TRANSFER_FOG(o,o.vertex);
                 return o;
@@ -404,11 +407,18 @@
                 color += sunSpecularColor + sparkleColor + edgeFoamColor;
 
                 // Reflection
-                // float2 screenPos = screenPos.xy / screenPos.w;
-                half4 rgbm = UNITY_SAMPLE_TEXCUBE(unity_SpecCube0, i.reflectionDir);
-                half3 reflectColor = DecodeHDR(rgbm, unity_SpecCube0_HDR);
+                // screenCoord
+                // half4 rgbm = UNITY_SAMPLE_TEXCUBE(unity_SpecCube0, i.reflectionDir);
+                // half3 reflectColor = DecodeHDR(rgbm, unity_SpecCube0_HDR);
 
-                // color = color * _reflectionFactor + tex2D(_ReflectionTex, screenPos) * (1-_reflectionFactor);
+                // color = color * _reflectionFactor + tex2D(_ReflectionTex, screenCoord) * (1-_reflectionFactor);
+                // color = color * _reflectionFactor + (1,1,0) * (1-_reflectionFactor);
+                float2 ReflectionUV = screenCoord;
+                ReflectionUV.x = 1.0 - ReflectionUV.x;
+                float3 DistrotReflectionTS = MotionFourWayChaos(_FoamTexture, ReflectionUV*5, 0.15, false);
+                // float UVOffset = tex2D(_FoamTexture, i.uv);
+                // ReflectionUV.x += _Time.y;
+                color =  color * (1-0) + tex2D(_ReflectionTex, ReflectionUV + DistrotReflectionTS.xy * 0.01) * (_reflectionFactor);
                 // Apply fog.
                 UNITY_APPLY_FOG(i.fogCoord, color);
 
@@ -416,6 +426,6 @@
             }
             ENDCG
         }
-
+        
     }
 }

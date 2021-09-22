@@ -3,6 +3,9 @@ Shader "Unlit/S_Reflection"
     Properties
     {
         _ReflectionTex ("Texture", 2D) = "white" {}
+        _FoamTexture ("FoamTexture", 2D) = "black"{}
+        _FoamScale ("Scale", float) = 1.0
+        _FoamSpeed ("Speed", float) = 1.0
     }
     SubShader
     {
@@ -40,6 +43,11 @@ Shader "Unlit/S_Reflection"
             sampler2D _ReflectionTex;
             float _reflectionFactor;
             float4 _ReflectionTex_ST;
+            
+            sampler2D _FoamTexture;
+            float _FoamScale;
+            float _FoamSpeed;
+            float _TimeSpeed;
 
             v2f vert (appdata v)
             {
@@ -52,7 +60,11 @@ Shader "Unlit/S_Reflection"
             fixed4 frag (v2f i) : SV_Target
             {
                 // sample the texture
-                fixed4 col = tex2D(_ReflectionTex, i.uv);
+                float2 uv = i.uv;
+                // uv.x += _Time.y * _TimeSpeed;
+                // float4 form = tex2D(_FoamTexture, uv * _FoamScale);
+                //form += _Time.y * _TimeSpeed;
+                fixed4 col = tex2D(_ReflectionTex, uv);
                 col.a = _reflectionFactor;
                 return col;
             }

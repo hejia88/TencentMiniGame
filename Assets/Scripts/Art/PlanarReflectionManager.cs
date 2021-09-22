@@ -32,7 +32,7 @@ public class PlanarReflectionManager : MonoBehaviour
         Shader.SetGlobalFloat("_reflectionFactor", m_RelfectionFactor);
     }
 
-    private void OnPostRender() {
+    private void OnPreRender() {
         RenderReflection();
     }
 
@@ -70,7 +70,9 @@ public class PlanarReflectionManager : MonoBehaviour
         m_ReflectionCamera.Render();
 
         // Draw full screen quad
-        DrawQuad();
+        // DrawQuad();
+
+        m_ReflectionMaterial.SetTexture("_ReflectionTex", m_RenderTarget);
 
     }
 

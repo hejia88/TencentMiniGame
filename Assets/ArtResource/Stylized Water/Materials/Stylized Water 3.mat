@@ -27,6 +27,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _ReflectionTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _SparklesNormalMap:
         m_Texture: {fileID: 2800000, guid: 53b00ac4b7ee2fb4681d46ce396bde98, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -43,12 +47,12 @@ Material:
     - _FoamContribution: 0.397
     - _FoamNoiseScale: 0.775
     - _FoamScale: 10
-    - _FoamSpeed: 0.1
-    - _Glossiness: 0.5
+    - _FoamSpeed: 0.2
+    - _Glossiness: 0.707
     - _MaxSampleDistance: 49
     - _MaxShadowDistance: 6.4
-    - _Metallic: 0
-    - _ReflectionContribution: 0.433
+    - _Metallic: 0.257
+    - _ReflectionContribution: 7.96
     - _RefractionStrength: 0
     - _SparkleExponent: 474.92
     - _SparkleScale: 147.3
@@ -67,6 +71,7 @@ Material:
     - _WaveNormalScale: 25
     - _WaveNormalSpeed: 0.05
     m_Colors:
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _DeepColor: {r: 0.20392156, g: 0.69126296, b: 1, a: 1}
     - _EdgeFoamColor: {r: 0.3584906, g: 0.3584906, b: 0.3584906, a: 1}
     - _FarColor: {r: 0.08343716, g: 0.29864755, b: 0.7075472, a: 1}
