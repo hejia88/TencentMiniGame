@@ -8,8 +8,8 @@ Shader "Unlit/S_Reflection"
     {
         Tags { "RenderType"="TransParent" }
         LOD 100
-        Blend SrcAlpha OneMinusSrcAlpha
-
+        Blend SrcAlpha One
+        //OneMinusSrcAlpha
         Pass
         {
             Stencil{

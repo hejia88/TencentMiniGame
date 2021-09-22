@@ -6,6 +6,8 @@
         _MainTex ("Albedo (RGB)", 2D) = "white" {}
         _Glossiness ("Smoothness", Range(0,1)) = 0.5
         _Metallic ("Metallic", Range(0,1)) = 0.0
+        // _ReflectionTex ("Texture", 2D) = "white" {}
+
         [Header(Densities)]
         _DepthDensity ("Depth", Range(0.0, 1.0)) = 0.5
         _DistanceDensity ("Distance", Range(0.0, 1.0)) = 0.1
@@ -88,16 +90,16 @@
             "RenderType" = "Transparent"
         }
 
-        GrabPass
-        {
-            "_GrabTexture"
-        }
         Stencil{
             Ref 1
             Comp always
             Pass replace
         }
 
+        GrabPass
+        {
+            "_GrabTexture"
+        }
 
         Pass
         {
@@ -111,6 +113,7 @@
             #pragma fragment frag
             #pragma multi_compile_fog  // Make fog work.
             #pragma shader_feature SHADOWS
+            // #pragma target 3.0
 
             #include "UnityCG.cginc"
             #include "WaterUtilities.cginc"
@@ -180,11 +183,16 @@
             sampler2D _GrabTexture;
             sampler2D _CameraDepthTexture;
 
+            // Reflection.
+            float _reflectionFactor;
+            sampler2D _ReflectionTex;
+
             struct appdata
             {
                 float4 vertex : POSITION;
                 float4 normal : NORMAL;
                 float2 uv : TEXCOORD0;
+                // out float4 outpos : SV_POSITION;
             };
 
             struct v2f
@@ -247,6 +255,7 @@
                 o.reflectionDir = reflect(-worldViewDir, worldNormal);
 
                 o.uv = v.uv;
+                // outpos = UnityObjectToClipPos(v.vertex);
                 UNITY_TRANSFER_FOG(o,o.vertex);
                 return o;
             }
@@ -394,9 +403,12 @@
                 float3 color = baseColor + reflectedColor + sssColor + foamColor;
                 color += sunSpecularColor + sparkleColor + edgeFoamColor;
 
+                // Reflection
+                // float2 screenPos = screenPos.xy / screenPos.w;
                 half4 rgbm = UNITY_SAMPLE_TEXCUBE(unity_SpecCube0, i.reflectionDir);
                 half3 reflectColor = DecodeHDR(rgbm, unity_SpecCube0_HDR);
 
+                // color = color * _reflectionFactor + tex2D(_ReflectionTex, screenPos) * (1-_reflectionFactor);
                 // Apply fog.
                 UNITY_APPLY_FOG(i.fogCoord, color);
 
