@@ -2,10 +2,12 @@
 {
     Properties
     {
-        [Header(Reflection)]
-        _MainTex ("Albedo (RGB)", 2D) = "white" {}
+       [Header(Wave)]
+        _WaveTex ("WaveTex (RGB)", 2D) = "white" {}
+        _WaveTling("WaveTiling", Float) = 1.0
         _Glossiness ("Smoothness", Range(0,1)) = 0.5
         _Metallic ("Metallic", Range(0,1)) = 0.0
+        [Header(Reflection)]
         _ReflectionTex ("Texture", 2D) = "white" {}
 
         [Header(Densities)]
@@ -120,6 +122,10 @@
             #include "WaterUtilities.cginc"
             #include "ShadowUtilities.cginc"
 
+            // Wave 
+            sampler2D _WaveTex;
+            float _WaveTling;
+            
             // Densities.
             float _DepthDensity;
             float _DistanceDensity;
@@ -419,6 +425,21 @@
                 // float UVOffset = tex2D(_FoamTexture, i.uv);
                 // ReflectionUV.x += _Time.y;
                 color =  color * (1-0) + tex2D(_ReflectionTex, ReflectionUV + DistrotReflectionTS.xy * 0.01) * (_reflectionFactor);
+
+                // ------------ //
+                // Wave //
+                // ------------ //
+                float2 WaveUV = i.uv;
+                float temp = WaveUV.x;
+                WaveUV.x = WaveUV.y;
+                WaveUV.y = temp;
+                WaveUV.y = 1-WaveUV.y;
+                WaveUV.y += sin(_Time.y)*0.05;
+                WaveUV.x += _Time.y * 0.02;
+                float3 DistrotWaveTS = MotionFourWayChaos(_WaveTex, WaveUV*0.1, 0.02, false);
+
+                float3 WaveColor = tex2D(_WaveTex, WaveUV * _WaveTling + DistrotWaveTS.xy*0.02);
+                color += WaveColor;
                 // Apply fog.
                 UNITY_APPLY_FOG(i.fogCoord, color);
 
