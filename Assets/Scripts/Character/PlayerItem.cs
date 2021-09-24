@@ -14,7 +14,7 @@ public enum ItemState
 
 namespace Com.Tencent.DYYS
 {
-    public class PlayerItem : MonoBehaviourPun
+    public class PlayerItem : MonoBehaviourPun, IPunObservable
     {
         private ItemManager manager_Item;
         public ItemState m_ItemState;
@@ -25,6 +25,7 @@ namespace Com.Tencent.DYYS
         public Image img_BtnUseBG;
         public Text txt_ActivateItemNum;
         public Color pickHightLightColor;
+        public Transform m_PanelTransform;
 
         public ItemState PickState
         {
@@ -36,15 +37,26 @@ namespace Com.Tencent.DYYS
         [HideInInspector] public int itemIndex;
         [HideInInspector] public ItemName itemName;
 
+        #region IPunObservable implementation
+        public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+        {
+        }
+        #endregion
+
         void Awake()
         {
             btn_Use.gameObject.SetActive(false);
             img_ActivateItemNum.GetComponent<Image>().color = pickHightLightColor;
             img_ActivateItemNum.gameObject.SetActive(false);
+            m_PanelTransform.gameObject.SetActive(false);
         }
 
         void Start()
         {
+            if (PhotonNetwork.IsConnected == true && photonView.IsMine == true)
+            {
+                m_PanelTransform.gameObject.SetActive(true);
+            }
             manager_Item = FindObjectOfType<ItemManager>();
             m_ItemState = ItemState.Nothing;
             isActivateItem = false;
@@ -168,6 +180,7 @@ namespace Com.Tencent.DYYS
 
         public void NormalBtnPick()
         {
+            Debug.Log("OnTriggerStay");
             btn_Pick.interactable = false;
             btn_Pick.GetComponent<Image>().color = Color.white;
         }
@@ -205,6 +218,11 @@ namespace Com.Tencent.DYYS
 
         private void OnTriggerExit(Collider coll)
         {
+            
+            if (PhotonNetwork.IsConnected == true && photonView.IsMine == false)
+            {
+                return;
+            }
             if (coll.tag == "Items")
             {
                 OnPlayerLeaveItem();
@@ -213,6 +231,10 @@ namespace Com.Tencent.DYYS
 
         private void OnTriggerStay(Collider coll)
         {
+            if (PhotonNetwork.IsConnected == true && photonView.IsMine == false)
+            {
+                return;
+            }
             if (coll.tag == "Items")
             {
                 OnPlayerStayItem(coll.gameObject);
