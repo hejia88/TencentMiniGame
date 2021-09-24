@@ -75,11 +75,6 @@ namespace Com.Tencent.DYYS
             if (PhotonNetwork.IsMasterClient)
             {
                 PlayerMovement.AIs = FindObjectsOfType<AIMovement>();
-                int cnt = 0;
-                foreach (var ai in PlayerMovement.AIs)
-                {
-                    Debug.LogFormat("CurrAi {0} is {1}", ++ cnt, ai);
-                }
             }
         }
 
