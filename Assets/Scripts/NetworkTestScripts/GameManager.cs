@@ -127,7 +127,6 @@ namespace Com.Tencent.DYYS
             {
                 Debug.LogError("PhotonNetwork : Trying to Load a level but we are not the master Client");
             }
-            PlayerMovement.AIs = FindObjectsOfType<AIMovement>();
             ItemManagerInstance.InitItemManager();
             Debug.LogFormat("PhotonNetwork : Loading Level : ATS6_0915");
             PhotonNetwork.LoadLevel("ATS6_0915");
