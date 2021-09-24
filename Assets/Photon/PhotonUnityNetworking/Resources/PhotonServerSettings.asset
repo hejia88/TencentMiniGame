@@ -44,6 +44,9 @@ MonoBehaviour:
   - Die
   - DieOnAllClient
   - FinishedDie
+  - MasterClient_RefreshPlayers
+  - RefreshPlayers
+  - FinishPlayerKill
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1
