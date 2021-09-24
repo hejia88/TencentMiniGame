@@ -12,7 +12,7 @@ namespace Com.Tencent.DYYS
 {
     public class GameManager : MonoBehaviourPunCallbacks
     {
-        public List<PlayerMovement> Players;
+        public PlayerMovement[] Players;
         #region Photon Callbacks
 
         /// <summary>
@@ -28,7 +28,8 @@ namespace Com.Tencent.DYYS
             Debug.LogFormat("OnPlayerEnteredRoom() {0}", other.NickName); // not seen if you're the player connecting
             if (PhotonNetwork.IsMasterClient)
             {
-                Debug.LogFormat("OnPlayerEnteredRoom IsMasterClient {0}", PhotonNetwork.IsMasterClient); // called before OnPlayerLeftRoom
+                Debug.LogFormat("OnPlayerEnteredRoom IsMasterClient {0}",
+                    PhotonNetwork.IsMasterClient); // called before OnPlayerLeftRoom
                 LoadArena();
             }
         }
@@ -40,6 +41,27 @@ namespace Com.Tencent.DYYS
             {
                 Debug.LogFormat("OnPlayerLeftRoom IsMasterClient {0}", PhotonNetwork.IsMasterClient); // called before OnPlayerLeftRoom
                 LoadArena();
+            }
+        }
+
+        
+        public void RefreshPlayers()
+        {
+            PhotonView m_PhotonView = PhotonView.Get(this);
+            if (PhotonNetwork.IsConnected && m_PhotonView != null)
+            {
+                m_PhotonView.RPC("MasterClient_RefreshPlayers", RpcTarget.MasterClient);
+            }
+        }
+
+        [PunRPC]
+        void MasterClient_RefreshPlayers()
+        {
+            Players = FindObjectsOfType<PlayerMovement>();
+            int cnt = 0;
+            foreach (var pm in Players)
+            {
+                Debug.LogFormat("CurrPlayer {0} is {1}", ++ cnt, pm.photonView);
             }
         }
 
@@ -81,11 +103,11 @@ namespace Com.Tencent.DYYS
                     Debug.LogFormat("We are Instantiating LocalPlayer from {0}", SceneManagerHelper.ActiveSceneName);
                     // we're in a room. spawn a character for the local player. it gets synced by using PhotonNetwork.Instantiate
                     var player = PhotonNetwork.Instantiate(this.playerPrefab.name, new Vector3(.0f, 1.0f, 20.0f), new Quaternion(0, 1, 0, 0), 0);
-                    Players.Add(player.GetComponent<PlayerMovement>());
+                    /*Players.Add(player.GetComponent<PlayerMovement>());
                     foreach (PlayerMovement pm in Players)
                     {
                         pm.LinkPlayers();
-                    }
+                    }*/
                 }
                 else
                 {

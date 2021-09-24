@@ -1,9 +1,12 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Photon.Pun;
 using Cinemachine;
+using Photon.Realtime;
+using Random = UnityEngine.Random;
 
 namespace Com.Tencent.DYYS
 {
@@ -77,7 +80,7 @@ namespace Com.Tencent.DYYS
         //----------------------------
         [HideInInspector]
         public static AIMovement[] AIs;
-        public PlayerMovement[] Players;
+        public List<PlayerMovement> Players;
         [HideInInspector]
         public AIMovement nearestAI;
         public PlayerMovement nearestPlayer;
@@ -109,6 +112,8 @@ namespace Com.Tencent.DYYS
         private GameObject VCInstance;
 
         private CinemachineVirtualCamera VirtualCameraInstance;
+
+        private PhotonView[] pvs;
 
         void Awake()
         {
@@ -142,7 +147,51 @@ namespace Com.Tencent.DYYS
                     DontDestroyOnLoad(VCInstance);
                 }
             }
+            
+            PhotonView m_PhotonView = PhotonView.Get(this);
+            if (PhotonNetwork.IsConnected && m_PhotonView != null)
+            {
+                m_PhotonView.RPC("RefreshPlayers", RpcTarget.AllViaServer);
+            }
         }
+
+        
+        [PunRPC]
+        void RefreshPlayers()
+        {
+            pvs = FindObjectsOfType<PhotonView>();
+            int cnt = 0;
+            Players.Clear();
+            foreach (var pv in pvs)
+            {
+                PhotonView m_PhotonView = PhotonView.Get(this);
+                if (pv.gameObject.GetComponent<PlayerMovement>())
+                {
+                    Debug.LogFormat("CurrPhotonView {0} is {1}, my Viewid is {2}", ++ cnt, pv.ViewID, m_PhotonView.ViewID);
+                    Players.Add(pv.gameObject.GetComponent<PlayerMovement>());
+                }
+            }
+        }
+
+        [PunRPC]
+        void FinishPlayerKill(int pvid)
+        {
+            PhotonView m_PhotonView = PhotonView.Find(pvid);
+            if (m_PhotonView.IsMine == true)
+            {
+                PhotonNetwork.Destroy(m_PhotonView.gameObject);
+            }
+        }
+
+        /*private void OnEnable()
+        {
+            GameManager.GameManagerInstance.RefreshPlayers();
+        }
+
+        private void OnDisable()
+        {
+            GameManager.GameManagerInstance.RefreshPlayers();
+        }*/
 
         void Update()
         {
@@ -153,18 +202,18 @@ namespace Com.Tencent.DYYS
             #region Player Attack Check and Change Color
             GetNearestAi();
             //等待后端支持玩家间查找
-            //GetNearestPlayer();
-            //if (nearestAI && nearestPlayer)
-            //{
-            //    if (Vector3.Distance(nearestAI.transform.position, transform.position) >= distance)
-            //    {
-            //        nearestAI = null;
-            //    }
-            //    else
-            //    {
-            //        nearestPlayer = null;
-            //    }
-            //}
+            GetNearestPlayer();
+            if (nearestAI && nearestPlayer)
+            {
+                if (Vector3.Distance(nearestAI.transform.position, transform.position) >= distance)
+                {
+                    nearestAI = null;
+                }
+                else
+                {
+                    nearestPlayer = null;
+                }
+            }
             foreach (AIMovement ai in AIs)
             {
                 if (ai == null)
@@ -179,30 +228,29 @@ namespace Com.Tencent.DYYS
                 ai.isLocked = false;
             }
             //等待后端支持玩家间查找
-            //foreach (PlayerMovement pm in Players)
-            //{
-            //    if (pm == null)
-            //    {
-            //        continue;
-            //    }
-            //    if (pm == nearestPlayer)
-            //    {
-            //        pm.isLocked = true;
-            //        continue;
-            //    }
-            //    pm.isLocked = false;
-            //}
+            foreach (PlayerMovement pm in Players)
+            {
+                if (pm == null)
+                { 
+                    continue;
+                }
+                if (pm == nearestPlayer)
+                {
+                    pm.isLocked = true;
+                    if (pm.player.GetComponent<SpriteRenderer>().color != lockedColor)
+                    {
+                        pm.player.GetComponent<SpriteRenderer>().color = lockedColor;
+                    }
+                    continue;
+                }
+                pm.isLocked = false;
+                if (pm.player.GetComponent<SpriteRenderer>().color != normalColor)
+                {
+                    pm.player.GetComponent<SpriteRenderer>().color = normalColor;
+                }
+            }
             anim_AttackBtn.SetBool("IsActive", nearestAI || nearestPlayer);
             attackButton.interactable = nearestAI || nearestPlayer;
-            //等待后端支持玩家间查找
-            //if (isLocked && GetComponent<SpriteRenderer>().color != lockedColor)
-            //{
-            //    GetComponent<SpriteRenderer>().color = lockedColor;
-            //}
-            //else if (!isLocked && GetComponent<SpriteRenderer>().color != normalColor)
-            //{
-            //    GetComponent<SpriteRenderer>().color = normalColor;
-            //}
             #endregion
 
             //mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -348,7 +396,13 @@ namespace Com.Tencent.DYYS
                 if (nearestPlayer != null)
                 {
                     //TODO:等待动画接入后加入Animator，移除销毁逻辑
-                    Destroy(nearestPlayer.gameObject);
+                    //PhotonNetwork.Destroy(nearestPlayer.gameObject);
+                    PhotonView m_PhotonView = PhotonView.Get(this);
+                    if (PhotonNetwork.IsConnected && m_PhotonView != null)
+                    {
+                        Debug.LogFormat("FinishPlayerKill {0}", nearestPlayer.photonView.ViewID);
+                        m_PhotonView.RPC("FinishPlayerKill", RpcTarget.AllViaServer, nearestPlayer.photonView.ViewID);
+                    }
                 }
                 anim_AttackBtn.SetTrigger("AttackButtonPress");
             }
@@ -396,7 +450,7 @@ namespace Com.Tencent.DYYS
         {
             nearestPlayer = null;
             distance = range;
-            if (Players.Length == 0) return;
+            if (Players.Count == 0) return;
             foreach (PlayerMovement pm in Players)
             {
                 if (pm == GetComponent<PlayerMovement>())
@@ -407,12 +461,12 @@ namespace Com.Tencent.DYYS
                 {
                     continue;
                 }
-                float dist = Vector3.Distance(pm.gameObject.transform.position, pm.transform.position);
+                float dist = Vector3.Distance(pm.gameObject.transform.position, player.transform.position);
                 if (dist > range) continue;
                 bool flag = pm.transform.rotation.y == 180;
-                if (pm.gameObject.transform.position.x <= pm.transform.position.x - 1 && !flag)
+                if (pm.gameObject.transform.position.x <= player.transform.position.x - 1 && !flag)
                     continue;
-                if (pm.gameObject.transform.position.x >= pm.transform.position.x + 1 && flag)
+                if (pm.gameObject.transform.position.x >= player.transform.position.x + 1 && flag)
                     continue;
                 if (dist <= distance)
                 {
@@ -436,11 +490,6 @@ namespace Com.Tencent.DYYS
             InnerCircle.GetComponent<Image>().enabled = IsShow;
             LeftOuterCircle.GetComponent<Image>().enabled = IsShow;
             RightOuterCircle.GetComponent<Image>().enabled = IsShow;
-        }
-
-        public void LinkPlayers()
-        {
-            Players = FindObjectsOfType<PlayerMovement>();
         }
     }
 }
