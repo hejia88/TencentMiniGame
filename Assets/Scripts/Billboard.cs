@@ -2,14 +2,11 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-
 using Cinemachine;
-
-
+using Photon.Pun;
 
 namespace Com.Tencent.DYYS {
-    public class Billboard : MonoBehaviour
+    public class Billboard : MonoBehaviourPun
     {
         //public Camera theCam;
 
@@ -31,7 +28,10 @@ namespace Com.Tencent.DYYS {
         // Update is called once per frame
         void Update()
         {
-
+            if (PhotonNetwork.IsConnected == true && photonView.IsMine == false)
+            {
+                return;
+            }
             if (!useStaticBillboard)
             {
                 transform.LookAt(virtualCameraInstance.transform);

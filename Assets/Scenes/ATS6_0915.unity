@@ -220,6 +220,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &28838734
 GameObject:
   m_ObjectHideFlags: 0
@@ -317,6 +319,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &30597880
 GameObject:
   m_ObjectHideFlags: 0
@@ -414,6 +418,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1001 &34018980
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -590,6 +596,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &47371334
 GameObject:
   m_ObjectHideFlags: 0
@@ -687,6 +695,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &60593432
 GameObject:
   m_ObjectHideFlags: 0
@@ -784,6 +794,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &61602355
 GameObject:
   m_ObjectHideFlags: 0
@@ -881,6 +893,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &65937769
 GameObject:
   m_ObjectHideFlags: 0
@@ -978,6 +992,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &70239329
 GameObject:
   m_ObjectHideFlags: 0
@@ -1075,6 +1091,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &74110360
 GameObject:
   m_ObjectHideFlags: 0
@@ -1172,6 +1190,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &78203999
 GameObject:
   m_ObjectHideFlags: 0
@@ -1269,6 +1289,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &85804078
 GameObject:
   m_ObjectHideFlags: 0
@@ -1366,6 +1388,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &97822983
 GameObject:
   m_ObjectHideFlags: 0
@@ -1463,6 +1487,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &111538189
 GameObject:
   m_ObjectHideFlags: 0
@@ -1560,6 +1586,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &114607004
 GameObject:
   m_ObjectHideFlags: 0
@@ -1657,6 +1685,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &119846159
 GameObject:
   m_ObjectHideFlags: 0
@@ -1754,6 +1784,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &124444830
 GameObject:
   m_ObjectHideFlags: 0
@@ -1851,6 +1883,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &143278345
 GameObject:
   m_ObjectHideFlags: 0
@@ -1948,6 +1982,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &145376325
 GameObject:
   m_ObjectHideFlags: 0
@@ -2045,6 +2081,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &157720785
 GameObject:
   m_ObjectHideFlags: 0
@@ -2142,6 +2180,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &164817589
 GameObject:
   m_ObjectHideFlags: 0
@@ -2239,6 +2279,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &180480499
 GameObject:
   m_ObjectHideFlags: 0
@@ -2336,6 +2378,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &190942319
 GameObject:
   m_ObjectHideFlags: 0
@@ -2433,6 +2477,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!64 &193542849
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -2544,6 +2590,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &199433749
 GameObject:
   m_ObjectHideFlags: 0
@@ -2641,6 +2689,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &200443005
 GameObject:
   m_ObjectHideFlags: 0
@@ -2738,6 +2788,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1001 &204921902
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2919,6 +2971,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &220355178
 GameObject:
   m_ObjectHideFlags: 0
@@ -3016,6 +3070,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &236670491
 GameObject:
   m_ObjectHideFlags: 0
@@ -3113,6 +3169,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &239328593
 GameObject:
   m_ObjectHideFlags: 0
@@ -3210,6 +3268,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &244748540
 GameObject:
   m_ObjectHideFlags: 0
@@ -3307,6 +3367,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &246714310
 GameObject:
   m_ObjectHideFlags: 0
@@ -3404,6 +3466,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &247914531
 GameObject:
   m_ObjectHideFlags: 0
@@ -3501,6 +3565,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &270623203
 GameObject:
   m_ObjectHideFlags: 0
@@ -3598,6 +3664,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &279280902
 GameObject:
   m_ObjectHideFlags: 0
@@ -3695,6 +3763,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &289898144
 GameObject:
   m_ObjectHideFlags: 0
@@ -3792,6 +3862,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &294956635
 GameObject:
   m_ObjectHideFlags: 0
@@ -3889,6 +3961,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &297685291
 GameObject:
   m_ObjectHideFlags: 0
@@ -3986,6 +4060,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &303630499
 GameObject:
   m_ObjectHideFlags: 0
@@ -4083,6 +4159,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1001 &314769069
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4098,7 +4176,7 @@ PrefabInstance:
     - target: {fileID: 2630546912510731491, guid: 9161e252c98dea14ea3918d91f29fe46,
         type: 3}
       propertyPath: m_RootOrder
-      value: 28
+      value: 29
       objectReference: {fileID: 0}
     - target: {fileID: 2630546912510731491, guid: 9161e252c98dea14ea3918d91f29fe46,
         type: 3}
@@ -4270,6 +4348,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &330298747
 GameObject:
   m_ObjectHideFlags: 0
@@ -4460,6 +4540,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1001 &366820791
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4636,6 +4718,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &407474576
 GameObject:
   m_ObjectHideFlags: 0
@@ -4733,6 +4817,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &409253396
 GameObject:
   m_ObjectHideFlags: 0
@@ -4830,6 +4916,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &419960965
 GameObject:
   m_ObjectHideFlags: 0
@@ -4927,6 +5015,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &427449089
 GameObject:
   m_ObjectHideFlags: 0
@@ -5024,6 +5114,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &429216926
 GameObject:
   m_ObjectHideFlags: 0
@@ -5121,6 +5213,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &433461811
 GameObject:
   m_ObjectHideFlags: 0
@@ -5218,6 +5312,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &474825679
 GameObject:
   m_ObjectHideFlags: 0
@@ -5315,6 +5411,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &497758866
 GameObject:
   m_ObjectHideFlags: 0
@@ -5412,6 +5510,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1001 &500077461
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5491,6 +5591,101 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8f0e6025e6bd61945ac6cb207c3f20fd, type: 3}
+--- !u!1001 &529561356
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 311926782089114238, guid: 38788a08b4a839240a24dead6c1999a7,
+        type: 3}
+      propertyPath: m_Name
+      value: PlayerManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 2826044066365219002, guid: 38788a08b4a839240a24dead6c1999a7,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2826044066365219002, guid: 38788a08b4a839240a24dead6c1999a7,
+        type: 3}
+      propertyPath: RebornSpots.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2826044066365219002, guid: 38788a08b4a839240a24dead6c1999a7,
+        type: 3}
+      propertyPath: RebornSpots.Array.data[0]
+      value: 
+      objectReference: {fileID: 1398652110}
+    - target: {fileID: 6280028219271876668, guid: 38788a08b4a839240a24dead6c1999a7,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 28
+      objectReference: {fileID: 0}
+    - target: {fileID: 6280028219271876668, guid: 38788a08b4a839240a24dead6c1999a7,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6280028219271876668, guid: 38788a08b4a839240a24dead6c1999a7,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6280028219271876668, guid: 38788a08b4a839240a24dead6c1999a7,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6280028219271876668, guid: 38788a08b4a839240a24dead6c1999a7,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6280028219271876668, guid: 38788a08b4a839240a24dead6c1999a7,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6280028219271876668, guid: 38788a08b4a839240a24dead6c1999a7,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6280028219271876668, guid: 38788a08b4a839240a24dead6c1999a7,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6280028219271876668, guid: 38788a08b4a839240a24dead6c1999a7,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6280028219271876668, guid: 38788a08b4a839240a24dead6c1999a7,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6280028219271876668, guid: 38788a08b4a839240a24dead6c1999a7,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6434028234719380646, guid: 38788a08b4a839240a24dead6c1999a7,
+        type: 3}
+      propertyPath: sceneViewId
+      value: 19
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 38788a08b4a839240a24dead6c1999a7, type: 3}
+--- !u!4 &529561357 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6280028219271876668, guid: 38788a08b4a839240a24dead6c1999a7,
+    type: 3}
+  m_PrefabInstance: {fileID: 529561356}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &533288830
 GameObject:
   m_ObjectHideFlags: 0
@@ -5588,6 +5783,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &534494534
 GameObject:
   m_ObjectHideFlags: 0
@@ -5685,6 +5882,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &540255688
 GameObject:
   m_ObjectHideFlags: 0
@@ -5782,6 +5981,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &556654792
 GameObject:
   m_ObjectHideFlags: 0
@@ -5879,6 +6080,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &564550323
 GameObject:
   m_ObjectHideFlags: 0
@@ -5976,6 +6179,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &570412395
 GameObject:
   m_ObjectHideFlags: 0
@@ -6073,6 +6278,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &578798333
 GameObject:
   m_ObjectHideFlags: 0
@@ -6170,6 +6377,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &606492004
 GameObject:
   m_ObjectHideFlags: 0
@@ -6267,6 +6476,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &645987812
 GameObject:
   m_ObjectHideFlags: 0
@@ -6364,6 +6575,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &652837675
 GameObject:
   m_ObjectHideFlags: 0
@@ -6461,6 +6674,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &652968490
 GameObject:
   m_ObjectHideFlags: 0
@@ -6558,6 +6773,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &656914941
 GameObject:
   m_ObjectHideFlags: 0
@@ -6655,6 +6872,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &657597814
 GameObject:
   m_ObjectHideFlags: 0
@@ -6752,6 +6971,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &663668696
 GameObject:
   m_ObjectHideFlags: 0
@@ -6849,6 +7070,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1001 &664947077
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7025,6 +7248,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &697182428
 GameObject:
   m_ObjectHideFlags: 0
@@ -7297,6 +7522,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &708471912
 GameObject:
   m_ObjectHideFlags: 0
@@ -7394,6 +7621,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &714401821
 GameObject:
   m_ObjectHideFlags: 0
@@ -7491,6 +7720,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &721918650
 GameObject:
   m_ObjectHideFlags: 0
@@ -7588,6 +7819,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &741801512
 GameObject:
   m_ObjectHideFlags: 0
@@ -7685,6 +7918,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1001 &743759483
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7861,6 +8096,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1001 &753795691
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8037,6 +8274,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &776890995
 GameObject:
   m_ObjectHideFlags: 0
@@ -8134,6 +8373,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &790367460
 GameObject:
   m_ObjectHideFlags: 0
@@ -13116,6 +13357,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &825005547
 GameObject:
   m_ObjectHideFlags: 0
@@ -13213,6 +13456,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &832052695
 GameObject:
   m_ObjectHideFlags: 0
@@ -13310,6 +13555,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &837433746
 GameObject:
   m_ObjectHideFlags: 0
@@ -13407,6 +13654,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &841953513
 GameObject:
   m_ObjectHideFlags: 0
@@ -13504,6 +13753,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1001 &849316784
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13680,6 +13931,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &852104404
 GameObject:
   m_ObjectHideFlags: 0
@@ -13777,6 +14030,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &853072381
 GameObject:
   m_ObjectHideFlags: 0
@@ -13874,6 +14129,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1001 &867422816
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14050,6 +14307,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &870081321
 GameObject:
   m_ObjectHideFlags: 0
@@ -14147,6 +14406,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &877864010
 GameObject:
   m_ObjectHideFlags: 0
@@ -14244,6 +14505,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &893249254
 GameObject:
   m_ObjectHideFlags: 0
@@ -14341,6 +14604,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1001 &899871341
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14596,6 +14861,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &919655695
 GameObject:
   m_ObjectHideFlags: 0
@@ -14693,6 +14960,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &926188509
 GameObject:
   m_ObjectHideFlags: 0
@@ -14790,6 +15059,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &929314516
 GameObject:
   m_ObjectHideFlags: 0
@@ -14887,6 +15158,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &936691111
 GameObject:
   m_ObjectHideFlags: 0
@@ -14984,6 +15257,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &979660032
 GameObject:
   m_ObjectHideFlags: 0
@@ -15081,6 +15356,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &984390803
 GameObject:
   m_ObjectHideFlags: 0
@@ -15178,6 +15455,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &993056671
 GameObject:
   m_ObjectHideFlags: 0
@@ -15275,6 +15554,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &998001899
 GameObject:
   m_ObjectHideFlags: 0
@@ -15372,6 +15653,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &1000044204
 GameObject:
   m_ObjectHideFlags: 0
@@ -15469,6 +15752,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &1005259055
 GameObject:
   m_ObjectHideFlags: 0
@@ -15566,6 +15851,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &1009496627
 GameObject:
   m_ObjectHideFlags: 0
@@ -15663,6 +15950,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &1009872973
 GameObject:
   m_ObjectHideFlags: 0
@@ -15760,6 +16049,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &1014877103
 GameObject:
   m_ObjectHideFlags: 0
@@ -15857,6 +16148,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &1016416888
 GameObject:
   m_ObjectHideFlags: 0
@@ -15954,6 +16247,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &1022238005
 GameObject:
   m_ObjectHideFlags: 0
@@ -16051,6 +16346,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &1042948379
 GameObject:
   m_ObjectHideFlags: 0
@@ -16148,6 +16445,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &1049444786
 GameObject:
   m_ObjectHideFlags: 0
@@ -16245,6 +16544,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &1049958089
 GameObject:
   m_ObjectHideFlags: 0
@@ -16342,6 +16643,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &1051260319
 GameObject:
   m_ObjectHideFlags: 0
@@ -16439,6 +16742,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &1056521347
 GameObject:
   m_ObjectHideFlags: 0
@@ -16536,6 +16841,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &1061077205
 GameObject:
   m_ObjectHideFlags: 0
@@ -16633,6 +16940,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &1064026396
 GameObject:
   m_ObjectHideFlags: 0
@@ -16730,6 +17039,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &1066046503
 GameObject:
   m_ObjectHideFlags: 0
@@ -16827,6 +17138,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &1073905030
 GameObject:
   m_ObjectHideFlags: 0
@@ -16924,6 +17237,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &1080985622
 GameObject:
   m_ObjectHideFlags: 0
@@ -17021,6 +17336,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &1093670751
 GameObject:
   m_ObjectHideFlags: 0
@@ -17118,6 +17435,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &1096059689
 GameObject:
   m_ObjectHideFlags: 0
@@ -17215,6 +17534,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &1112899079
 GameObject:
   m_ObjectHideFlags: 0
@@ -17312,6 +17633,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &1117560728
 GameObject:
   m_ObjectHideFlags: 0
@@ -17409,6 +17732,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &1139181664
 GameObject:
   m_ObjectHideFlags: 0
@@ -17506,6 +17831,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &1139995655
 GameObject:
   m_ObjectHideFlags: 0
@@ -17570,7 +17897,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 30
+  m_RootOrder: 31
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1161576102
 GameObject:
@@ -17669,6 +17996,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &1174077159
 GameObject:
   m_ObjectHideFlags: 0
@@ -17823,6 +18152,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &1203098736
 GameObject:
   m_ObjectHideFlags: 0
@@ -17920,6 +18251,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &1215604829
 GameObject:
   m_ObjectHideFlags: 0
@@ -18017,6 +18350,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &1231640549
 GameObject:
   m_ObjectHideFlags: 0
@@ -18114,6 +18449,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &1249968308
 GameObject:
   m_ObjectHideFlags: 0
@@ -18338,6 +18675,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &1275869830
 GameObject:
   m_ObjectHideFlags: 0
@@ -18435,6 +18774,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &1277465699
 GameObject:
   m_ObjectHideFlags: 0
@@ -18532,6 +18873,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &1282054824
 GameObject:
   m_ObjectHideFlags: 0
@@ -18724,6 +19067,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &1290106481
 GameObject:
   m_ObjectHideFlags: 0
@@ -18821,6 +19166,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &1293845279
 GameObject:
   m_ObjectHideFlags: 0
@@ -19103,6 +19450,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &1307811190
 GameObject:
   m_ObjectHideFlags: 0
@@ -19200,6 +19549,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1001 &1314981172
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19376,6 +19727,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &1343100097
 GameObject:
   m_ObjectHideFlags: 0
@@ -19568,6 +19921,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &1346819595
 GameObject:
   m_ObjectHideFlags: 0
@@ -19665,6 +20020,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &1357037588
 GameObject:
   m_ObjectHideFlags: 0
@@ -19762,6 +20119,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &1373843113
 GameObject:
   m_ObjectHideFlags: 0
@@ -19859,6 +20218,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &1378631610
 GameObject:
   m_ObjectHideFlags: 0
@@ -19956,6 +20317,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1001 &1383405829
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20257,6 +20620,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &1397779462
 GameObject:
   m_ObjectHideFlags: 0
@@ -20354,6 +20719,38 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
+--- !u!1 &1398652110
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1398652111}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1398652111
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1398652110}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalPosition: {x: 3.46, y: 0.14, z: -18.6}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 529561357}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!1 &1400881888
 GameObject:
   m_ObjectHideFlags: 0
@@ -20451,6 +20848,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1001 &1411655771
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20627,6 +21026,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &1417957253
 GameObject:
   m_ObjectHideFlags: 0
@@ -20724,6 +21125,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &1420268901
 GameObject:
   m_ObjectHideFlags: 0
@@ -20821,6 +21224,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &1430656399
 GameObject:
   m_ObjectHideFlags: 0
@@ -20918,6 +21323,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &1431927302
 GameObject:
   m_ObjectHideFlags: 0
@@ -21015,6 +21422,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &1454049311
 GameObject:
   m_ObjectHideFlags: 0
@@ -21112,6 +21521,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &1462627759
 GameObject:
   m_ObjectHideFlags: 0
@@ -21209,6 +21620,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &1463220286
 GameObject:
   m_ObjectHideFlags: 0
@@ -21306,6 +21719,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &1463769023
 GameObject:
   m_ObjectHideFlags: 0
@@ -21403,6 +21818,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &1467797364
 GameObject:
   m_ObjectHideFlags: 0
@@ -21500,6 +21917,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &1475459880
 GameObject:
   m_ObjectHideFlags: 0
@@ -21597,6 +22016,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &1476777378
 GameObject:
   m_ObjectHideFlags: 0
@@ -26498,6 +26919,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &1484471221
 GameObject:
   m_ObjectHideFlags: 0
@@ -26595,6 +27018,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &1486705262
 GameObject:
   m_ObjectHideFlags: 0
@@ -26787,6 +27212,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &1513663951
 GameObject:
   m_ObjectHideFlags: 0
@@ -27034,6 +27461,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &1530382277
 GameObject:
   m_ObjectHideFlags: 0
@@ -27131,6 +27560,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &1535842682
 GameObject:
   m_ObjectHideFlags: 0
@@ -27228,6 +27659,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &1553687426
 GameObject:
   m_ObjectHideFlags: 0
@@ -27325,6 +27758,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &1556578106
 GameObject:
   m_ObjectHideFlags: 0
@@ -27422,6 +27857,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1001 &1559652339
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -27693,6 +28130,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &1587412451
 GameObject:
   m_ObjectHideFlags: 0
@@ -27968,6 +28407,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &1626641377
 GameObject:
   m_ObjectHideFlags: 0
@@ -28065,6 +28506,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &1632180077
 GameObject:
   m_ObjectHideFlags: 0
@@ -28162,6 +28605,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &1640853904
 GameObject:
   m_ObjectHideFlags: 0
@@ -28259,6 +28704,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &1655426923
 GameObject:
   m_ObjectHideFlags: 0
@@ -28356,6 +28803,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &1655856297 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1620502929034705645, guid: d727a3f6f4e15c44cb3107197565ef96,
@@ -28459,6 +28908,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &1678335806
 GameObject:
   m_ObjectHideFlags: 0
@@ -28556,6 +29007,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &1679302374
 GameObject:
   m_ObjectHideFlags: 0
@@ -28653,6 +29106,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &1688725301
 GameObject:
   m_ObjectHideFlags: 0
@@ -28750,6 +29205,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &1693565736
 GameObject:
   m_ObjectHideFlags: 0
@@ -28847,6 +29304,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &1698844364
 GameObject:
   m_ObjectHideFlags: 0
@@ -28944,6 +29403,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &1717760046
 GameObject:
   m_ObjectHideFlags: 0
@@ -29041,6 +29502,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &1719190429
 GameObject:
   m_ObjectHideFlags: 0
@@ -29138,6 +29601,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &1722065886
 GameObject:
   m_ObjectHideFlags: 0
@@ -29235,6 +29700,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &1722378358
 GameObject:
   m_ObjectHideFlags: 0
@@ -29332,6 +29799,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &1727238992
 GameObject:
   m_ObjectHideFlags: 0
@@ -29429,6 +29898,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &1728668763
 GameObject:
   m_ObjectHideFlags: 0
@@ -29526,6 +29997,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &1729598926
 GameObject:
   m_ObjectHideFlags: 0
@@ -29623,6 +30096,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &1763077773
 GameObject:
   m_ObjectHideFlags: 0
@@ -29720,6 +30195,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &1769848107
 GameObject:
   m_ObjectHideFlags: 0
@@ -29817,6 +30294,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &1777226951
 GameObject:
   m_ObjectHideFlags: 0
@@ -29914,6 +30393,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &1780876099
 GameObject:
   m_ObjectHideFlags: 0
@@ -30011,6 +30492,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &1786525537
 GameObject:
   m_ObjectHideFlags: 0
@@ -30108,6 +30591,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &1786575896
 GameObject:
   m_ObjectHideFlags: 0
@@ -30205,6 +30690,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &1802856452
 GameObject:
   m_ObjectHideFlags: 0
@@ -30302,6 +30789,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &1805799613
 GameObject:
   m_ObjectHideFlags: 0
@@ -30399,6 +30888,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &1813235418
 GameObject:
   m_ObjectHideFlags: 0
@@ -30496,6 +30987,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &1816404532
 GameObject:
   m_ObjectHideFlags: 0
@@ -30593,6 +31086,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &1829548412
 GameObject:
   m_ObjectHideFlags: 0
@@ -30690,6 +31185,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &1830120162
 GameObject:
   m_ObjectHideFlags: 0
@@ -30787,6 +31284,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &1834985004
 GameObject:
   m_ObjectHideFlags: 0
@@ -30979,6 +31478,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &1861667557
 GameObject:
   m_ObjectHideFlags: 0
@@ -31076,6 +31577,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &1874864877
 GameObject:
   m_ObjectHideFlags: 0
@@ -31173,6 +31676,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &1879550099
 GameObject:
   m_ObjectHideFlags: 0
@@ -31270,6 +31775,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &1888237100
 GameObject:
   m_ObjectHideFlags: 0
@@ -31367,6 +31874,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &1889963669
 GameObject:
   m_ObjectHideFlags: 0
@@ -31464,6 +31973,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &1895283833
 GameObject:
   m_ObjectHideFlags: 0
@@ -31561,6 +32072,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &1902049380
 GameObject:
   m_ObjectHideFlags: 0
@@ -31658,6 +32171,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &1918100893
 GameObject:
   m_ObjectHideFlags: 0
@@ -31755,6 +32270,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &1928065314
 GameObject:
   m_ObjectHideFlags: 0
@@ -31852,6 +32369,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &1950495798
 GameObject:
   m_ObjectHideFlags: 0
@@ -32059,6 +32578,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &1981075689
 GameObject:
   m_ObjectHideFlags: 0
@@ -32156,6 +32677,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1001 &1990349692
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -32429,6 +32952,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &2017097333
 GameObject:
   m_ObjectHideFlags: 0
@@ -32526,6 +33051,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &2019110955
 GameObject:
   m_ObjectHideFlags: 0
@@ -32623,6 +33150,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &2041921037
 GameObject:
   m_ObjectHideFlags: 0
@@ -32720,6 +33249,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &2045202724
 GameObject:
   m_ObjectHideFlags: 0
@@ -32817,6 +33348,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &2053469793
 GameObject:
   m_ObjectHideFlags: 0
@@ -32914,6 +33447,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &2083097304
 GameObject:
   m_ObjectHideFlags: 0
@@ -33011,6 +33546,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &2084895949
 GameObject:
   m_ObjectHideFlags: 0
@@ -33108,6 +33645,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &2112048276
 GameObject:
   m_ObjectHideFlags: 0
@@ -33205,6 +33744,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &2121738558
 GameObject:
   m_ObjectHideFlags: 0
@@ -33302,6 +33843,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &2125644428
 GameObject:
   m_ObjectHideFlags: 0
@@ -33399,6 +33942,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &2135609015
 GameObject:
   m_ObjectHideFlags: 0
@@ -33496,6 +34041,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 0
+  thisCharacter: {fileID: 0}
+  layerOffset: 0
 --- !u!1 &161677483321099462
 GameObject:
   m_ObjectHideFlags: 0
@@ -33569,7 +34116,7 @@ PrefabInstance:
     - target: {fileID: 1620502929034705647, guid: d727a3f6f4e15c44cb3107197565ef96,
         type: 3}
       propertyPath: m_RootOrder
-      value: 29
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 1620502929034705647, guid: d727a3f6f4e15c44cb3107197565ef96,
         type: 3}
