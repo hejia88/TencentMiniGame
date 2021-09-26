@@ -161,7 +161,6 @@ namespace Com.Tencent.DYYS
 
                 m_ItemState = ItemState.Owning;
                 SetItemData(Item);
-                Debug.Log(string.Format("{0},{1}", isActivateItem, itemCount));
                 NormalBtnPick();
                 
                 ShowBtnUse(isActivateItem,  itemCount);
@@ -186,7 +185,6 @@ namespace Com.Tencent.DYYS
 
         public void NormalBtnPick()
         {
-            Debug.Log("OnTriggerStay");
             btn_Pick.interactable = false;
             btn_Pick.GetComponent<Image>().color = Color.white;
         }
