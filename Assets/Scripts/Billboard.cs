@@ -1,31 +1,51 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Billboard : MonoBehaviour
-{
-    public Camera theCam;
+using Photon.Pun;
+using Cinemachine;
+using Photon.Realtime;
 
-    public bool useStaticBillboard;
 
-    // Start is called before the first frame update
-    void Start()
+namespace Com.Tencent.DYYS {
+    public class Billboard : MonoBehaviour
     {
-        theCam = Camera.main;
-    }
+        //public Camera theCam;
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (!useStaticBillboard)
-        {
-            transform.LookAt(theCam.transform);
-        }
-        else
-        {
-            transform.rotation = theCam.transform.rotation;
-        }
+        public bool useStaticBillboard;
+        public GameObject theCMvcam;
+        private Camera cmVcam;
+        private PlayerMovement playerMovement;
+        public CinemachineVirtualCamera virtualCameraInstance;
 
-        transform.rotation = Quaternion.Euler(38f, (transform.rotation.eulerAngles.y * 0.01f), 0f);
+
+        // Start is called before the first frame update
+        void Start()
+        {
+            //theCam = Camera.main;
+            playerMovement = gameObject.GetComponent<PlayerMovement>();
+            virtualCameraInstance = playerMovement.VirtualCameraInstance;
+         }
+
+        // Update is called once per frame
+        void Update()
+        {
+            if (PhotonNetwork.IsConnected == true)
+            {
+
+            }
+
+            if (!useStaticBillboard)
+            {
+                transform.LookAt(virtualCameraInstance.transform);
+            }
+            else
+            {
+                transform.rotation = virtualCameraInstance.transform.rotation;
+            }
+
+            transform.rotation = Quaternion.Euler(38f, (transform.rotation.eulerAngles.y * 0.01f), 0f);
+        }
     }
 }

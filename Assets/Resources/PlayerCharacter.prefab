@@ -1309,6 +1309,7 @@ MonoBehaviour:
   attackButton: {fileID: 5507354251363886552}
   VirtualCameraPrefab: {fileID: 8516696286842527777, guid: 5f6d8079768375341b41323dc89357df,
     type: 3}
+  VirtualCameraInstance: {fileID: 0}
 --- !u!114 &6751993258413508966
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1416,6 +1417,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   useStaticBillboard: 0
+  theCMvcam: {fileID: 5428793012664893304}
+  virtualCameraInstance: {fileID: 0}
 --- !u!1 &5507354250729008271
 GameObject:
   m_ObjectHideFlags: 0
