@@ -3,9 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-using Photon.Pun;
+
 using Cinemachine;
-using Photon.Realtime;
+
 
 
 namespace Com.Tencent.DYYS {
@@ -24,17 +24,13 @@ namespace Com.Tencent.DYYS {
         void Start()
         {
             //theCam = Camera.main;
-            playerMovement = gameObject.GetComponent<PlayerMovement>();
+            playerMovement = gameObject.GetComponentInParent<PlayerMovement>();
             virtualCameraInstance = playerMovement.VirtualCameraInstance;
          }
 
         // Update is called once per frame
         void Update()
         {
-            if (PhotonNetwork.IsConnected == true)
-            {
-
-            }
 
             if (!useStaticBillboard)
             {
