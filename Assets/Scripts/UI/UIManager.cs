@@ -57,7 +57,6 @@ namespace Com.Tencent.DYYS
             btn_Pick.gameObject.SetActive(false);
             btn_Use.gameObject.SetActive(true);
 
-            img_BtnUseBG.sprite = manager_ItemScene.list_UITexture[itemIndex];
             if (isActivateItem)
             {
                 btn_Use.interactable = true;

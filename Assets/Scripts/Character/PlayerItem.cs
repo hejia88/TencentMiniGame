@@ -16,7 +16,7 @@ namespace Com.Tencent.DYYS
 {
     public class PlayerItem : MonoBehaviourPun, IPunObservable
     {
-        private ItemManager manager_Item;
+        public static ItemManager manager_Item;
         public ItemState m_ItemState;
         public GameObject Player;
         public Button btn_Pick;
@@ -25,6 +25,8 @@ namespace Com.Tencent.DYYS
         public Image img_BtnUseBG;
         public Text txt_ActivateItemNum;
         public Color pickHightLightColor;
+        private Sprite UITexture;
+        private AudioClip ItemAudio;
         public Transform m_PanelTransform;
 
         public ItemState PickState
@@ -107,7 +109,7 @@ namespace Com.Tencent.DYYS
                         }
                         else
                         {
-                            ShowBtnUse(isActivateItem, itemIndex, itemCount);
+                            ShowBtnUse(isActivateItem,  itemCount);
                         }
                     }
                 }
@@ -126,7 +128,7 @@ namespace Com.Tencent.DYYS
                     {
                         if (Player)
                         {
-                            Player.GetComponent<PlayerMovement>().PlayAudio(manager_Item.list_AudioClip[itemIndex]);
+                            Player.GetComponent<PlayerMovement>().PlayAudio(ItemAudio);
                         }
                     }
                     itemName = ItemName.Others;
@@ -152,14 +154,17 @@ namespace Com.Tencent.DYYS
             }
             if (m_ItemState == ItemState.Picking)
             {
-                ItemPrefab Item = go.GetComponent<ItemPrefab>();
+                PhotonView m = go.GetPhotonView();
+                int pvid = m.ViewID;
+                PhotonView goPV = PhotonView.Find(pvid);
+                ItemPrefab Item = goPV.gameObject.GetComponent<ItemPrefab>();
 
-                SetItemData(Item);
                 m_ItemState = ItemState.Owning;
-
+                SetItemData(Item);
+                Debug.Log(string.Format("{0},{1}", isActivateItem, itemCount));
                 NormalBtnPick();
-                Debug.Log(string.Format("{0},{1},{2}", isActivateItem, itemIndex, itemCount));
-                ShowBtnUse(isActivateItem, itemIndex, itemCount);
+                
+                ShowBtnUse(isActivateItem,  itemCount);
                 manager_Item.ItemDestroy(go);
             }
         }
@@ -168,8 +173,9 @@ namespace Com.Tencent.DYYS
         {
             isActivateItem = (InItemBase.Itemtype == ItemType.ActiveItem);
             itemCount = InItemBase.UsageCount;
-            itemIndex = InItemBase.IndexResource;
             itemName = InItemBase.ItemName;
+            UITexture = InItemBase.UItexture;
+            ItemAudio = InItemBase.AudioClip;
         }
 
         public void HighlightBtnPick()
@@ -193,12 +199,12 @@ namespace Com.Tencent.DYYS
             img_ActivateItemNum.gameObject.SetActive(false);
         }
 
-        public void ShowBtnUse(bool isActivateItem, int itemIndex, int itemCount)
+        public void ShowBtnUse(bool isActivateItem,  int itemCount)
         {
             btn_Pick.gameObject.SetActive(false);
             btn_Use.gameObject.SetActive(true);
 
-            img_BtnUseBG.sprite = manager_Item.list_UITexture[itemIndex];
+            img_BtnUseBG.sprite = UITexture;
             if (isActivateItem)
             {
                 btn_Use.interactable = true;
