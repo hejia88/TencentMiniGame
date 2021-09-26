@@ -30,6 +30,7 @@ namespace Com.Tencent.DYYS
         // Start is called before the first frame update
         void Start()
         {
+            PlayerItem.manager_Item = this;
             if (PhotonNetwork.IsConnected && !PhotonNetwork.IsMasterClient)
             {
                 return;
@@ -93,10 +94,10 @@ namespace Com.Tencent.DYYS
                 return;
             }
             GameObject go = goPV.gameObject;
-            MasterDestoryItem(go);
+            MasterDestroyItem(go);
         }
 
-        private void MasterDestoryItem(GameObject go)
+        private void MasterDestroyItem(GameObject go)
         {
             if (PhotonNetwork.IsConnected && !PhotonNetwork.IsMasterClient)
             {
@@ -129,14 +130,13 @@ namespace Com.Tencent.DYYS
                 }
                 else
                 {
-                    MasterDestoryItem(go);
+                    MasterDestroyItem(go);
                 }
 
             }
         }
         public void InitItemManager()
         {
-            PlayerItem.manager_Item = this; 
             if (PhotonNetwork.IsConnected && !PhotonNetwork.IsMasterClient)
             {
                 return;
