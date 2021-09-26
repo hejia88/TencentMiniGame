@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public enum ItemType
 {
@@ -13,55 +14,50 @@ public enum ItemName
     GoldenSilk
 }
 
-public class ItemPrefab : MonoBehaviour
+namespace Com.Tencent.DYYS
 {
-
-    [Header("技能分类")]
-    public ItemType Itemtype;
-
-    [Header("主动道具使用次数")]
-    [Tooltip("仅在m_Itemtype=ActiveItem时配置有效")]
-    public int UsageCount;
-
-    [Header("拾取半径")]
-    public float PickDistance;
-
-    [Header("UI资源")]
-    public Sprite  UItexture;
-
-    [Header("声音资源")]
-    public AudioClip AudioClip;
-
-    public ItemName ItemName;
-
-    private int indexResource;
-
-    public int IndexResource
+    public class ItemPrefab : MonoBehaviourPun
     {
-        get { return indexResource; }
-        set { indexResource = value; }
-    }
 
-    private BoxCollider m_boxCollider;
+        [Header("技能分类")]
+        public ItemType Itemtype;
 
-    private ItemManager manager_Item;
+        [Header("主动道具使用次数")]
+        [Tooltip("仅在m_Itemtype=ActiveItem时配置有效")]
+        public int UsageCount;
 
-    public ItemManager Manager_Item
-    {
-        set { manager_Item = value; }
-    }
+        [Header("拾取半径")]
+        public float PickDistance;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        m_boxCollider = gameObject.GetComponent<BoxCollider>();
+        [Header("UI资源")]
+        public Sprite UItexture;
 
-        m_boxCollider.size = new Vector3(PickDistance, PickDistance, PickDistance);
-    }
+        [Header("声音资源")]
+        public AudioClip AudioClip;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        public ItemName ItemName;
+
+        private BoxCollider m_boxCollider;
+
+        private ItemManager manager_Item;
+
+        public ItemManager Manager_Item
+        {
+            set { manager_Item = value; }
+        }
+
+        // Start is called before the first frame update
+        void Start()
+        {
+            m_boxCollider = gameObject.GetComponent<BoxCollider>();
+
+            m_boxCollider.size = new Vector3(PickDistance, PickDistance, PickDistance);
+        }
+
+        // Update is called once per frame
+        void Update()
+        {
+
+        }
     }
 }
