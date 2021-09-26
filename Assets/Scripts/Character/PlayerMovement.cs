@@ -106,12 +106,13 @@ namespace Com.Tencent.DYYS
         //----------------------------
         public static GameObject LocalPlayerInstance;
         //----------------------------
-
+        private PlayerManager PlayerManagerInstance;
+        
         public GameObject VirtualCameraPrefab;
 
         private GameObject VCInstance;
 
-        private CinemachineVirtualCamera VirtualCameraInstance;
+        public CinemachineVirtualCamera VirtualCameraInstance;
 
         private PhotonView[] pvs;
 
@@ -134,6 +135,7 @@ namespace Com.Tencent.DYYS
             anim = player.GetComponent<Animator>();
             AIs = FindObjectsOfType<AIMovement>();
             m_AudioSource = player.GetComponent<AudioSource>();
+            PlayerManagerInstance = FindObjectOfType<PlayerManager>();
 
             anim_AttackBtn = BG_AttackBtn.GetComponent<Animator>();
 
@@ -144,6 +146,7 @@ namespace Com.Tencent.DYYS
                     VCInstance = GameObject.Instantiate(VirtualCameraPrefab, new Vector3(.0f, .0f, .0f), new Quaternion(0.382683426f, 0, 0, 0.923879564f));
                     VirtualCameraInstance = VCInstance.GetComponent<CinemachineVirtualCamera>();
                     VirtualCameraInstance.Follow = gameObject.transform;
+                    Debug.LogFormat("Virtual Camera begin following {0}.", photonView.ViewID);
                     DontDestroyOnLoad(VCInstance);
                 }
             }
@@ -180,18 +183,9 @@ namespace Com.Tencent.DYYS
             if (m_PhotonView.IsMine == true)
             {
                 PhotonNetwork.Destroy(m_PhotonView.gameObject);
+                PlayerManagerInstance.RebornPlayer();
             }
         }
-
-        /*private void OnEnable()
-        {
-            GameManager.GameManagerInstance.RefreshPlayers();
-        }
-
-        private void OnDisable()
-        {
-            GameManager.GameManagerInstance.RefreshPlayers();
-        }*/
 
         void Update()
         {

@@ -40,6 +40,9 @@ public class PlanarReflectionManager : MonoBehaviour
     {
         m_ReflectionCamera.CopyFrom(m_MainCamera);
 
+        m_ReflectionCamera.cullingMask = 1<<10;
+        m_ReflectionCamera.cullingMask = ~m_ReflectionCamera.cullingMask;
+
         Vector3 cameraDirectionWorldSpace = m_MainCamera.transform.forward;
         Vector3 cameraUpWorldSpace = m_MainCamera.transform.up;
         Vector3 cameraPositionWorldSpace = m_MainCamera.transform.position;
@@ -70,35 +73,8 @@ public class PlanarReflectionManager : MonoBehaviour
         m_ReflectionCamera.Render();
 
         // Draw full screen quad
-        // DrawQuad();
-
         m_ReflectionMaterial.SetTexture("_ReflectionTex", m_RenderTarget);
 
     }
 
-    void DrawQuad(){
-        GL.PushMatrix();
-
-        // Use ground Matrail to draw the quad
-        m_ReflectionMaterial.SetPass(0);
-        m_ReflectionMaterial.SetTexture("_ReflectionTex", m_RenderTarget);
-
-
-        GL.LoadOrtho();
-
-        GL.Begin(GL.QUADS);
-
-        GL.TexCoord2(1.0f, 0.0f);
-        GL.Vertex3(0.0f, 0.0f, 0.0f);
-        GL.TexCoord2(1.0f, 1.0f);
-        GL.Vertex3(0.0f, 1.0f, 0.0f);
-        GL.TexCoord2(0.0f, 1.0f);
-        GL.Vertex3(1.0f, 1.0f, 0.0f);
-        GL.TexCoord2(0.0f, 0.0f);
-        GL.Vertex3(1.0f, 0.0f, 0.0f);
-
-        GL.End();
-
-        GL.PopMatrix();
-    }
 }

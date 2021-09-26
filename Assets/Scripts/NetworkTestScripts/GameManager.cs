@@ -12,7 +12,6 @@ namespace Com.Tencent.DYYS
 {
     public class GameManager : MonoBehaviourPunCallbacks
     {
-        public PlayerMovement[] Players;
         #region Photon Callbacks
 
         /// <summary>
@@ -44,39 +43,15 @@ namespace Com.Tencent.DYYS
             }
         }
 
-        
-        public void RefreshPlayers()
-        {
-            PhotonView m_PhotonView = PhotonView.Get(this);
-            if (PhotonNetwork.IsConnected && m_PhotonView != null)
-            {
-                m_PhotonView.RPC("MasterClient_RefreshPlayers", RpcTarget.MasterClient);
-            }
-        }
-
-        [PunRPC]
-        void MasterClient_RefreshPlayers()
-        {
-            Players = FindObjectsOfType<PlayerMovement>();
-            int cnt = 0;
-            foreach (var pm in Players)
-            {
-                Debug.LogFormat("CurrPlayer {0} is {1}", ++ cnt, pm.photonView);
-            }
-        }
-
         #endregion
 
 
         #region Public Methods
 
-        [Tooltip("The prefab to use for representing the player")]
-        public GameObject playerPrefab;
-
         public GameObject ItemManagePrefab;
 
         public static GameManager GameManagerInstance;
-
+        
         private ItemManager ItemManagerInstance;
 
         void Awake()
@@ -90,29 +65,6 @@ namespace Com.Tencent.DYYS
             if (ItemManagePrefab != null)
             {
                 ItemManagerInstance = ItemManagePrefab.GetComponent<ItemManager>();
-            }
-
-            if (playerPrefab == null)
-            {
-                Debug.LogError("<Color=Red><a>Missing</a></Color> playerPrefab Reference. Please set it up in GameObject 'Game Manager'", this);
-            }
-            else
-            {
-                if (PlayerMovement.LocalPlayerInstance == null)
-                {
-                    Debug.LogFormat("We are Instantiating LocalPlayer from {0}", SceneManagerHelper.ActiveSceneName);
-                    // we're in a room. spawn a character for the local player. it gets synced by using PhotonNetwork.Instantiate
-                    var player = PhotonNetwork.Instantiate(this.playerPrefab.name, new Vector3(.0f, 1.0f, 20.0f), new Quaternion(0, 1, 0, 0), 0);
-                    /*Players.Add(player.GetComponent<PlayerMovement>());
-                    foreach (PlayerMovement pm in Players)
-                    {
-                        pm.LinkPlayers();
-                    }*/
-                }
-                else
-                {
-                    Debug.LogFormat("Ignoring scene load for {0}", SceneManagerHelper.ActiveSceneName);
-                }
             }
         }
 

@@ -47,6 +47,7 @@ MonoBehaviour:
   - MasterClient_RefreshPlayers
   - RefreshPlayers
   - FinishPlayerKill
+  - ItemDestroyRPC
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

@@ -153,6 +153,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FixedObject: 1
   isCharacter: 1
+  thisCharacter: {fileID: 1459460831004151838}
+  layerOffset: 0
 --- !u!114 &-9119331320345601343
 MonoBehaviour:
   m_ObjectHideFlags: 0
