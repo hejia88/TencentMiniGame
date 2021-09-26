@@ -7,6 +7,8 @@ public class SpriteOrderManager : MonoBehaviour
     public bool FixedObject;
     private SpriteRenderer spriteRenderer;
     public bool isCharacter;
+    [SerializeField] GameObject thisCharacter;
+    public int layerOffset;
 
     private void Awake()
     {
@@ -20,7 +22,7 @@ public class SpriteOrderManager : MonoBehaviour
         {
             if (isCharacter)
             {
-                spriteRenderer.sortingOrder = -(int)(transform.position.z * 100);
+                spriteRenderer.sortingOrder = -(int)(thisCharacter.transform.position.z * 100) + layerOffset;
             }
         }
     }
