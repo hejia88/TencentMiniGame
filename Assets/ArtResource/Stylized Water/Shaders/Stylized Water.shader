@@ -3,11 +3,11 @@
     Properties
     {
        [Header(Wave)]
+       [NoScaleOffset]
         _WaveTex ("WaveTex (RGB)", 2D) = "white" {}
         _WaveTling("WaveTiling", Float) = 1.0
-        _Glossiness ("Smoothness", Range(0,1)) = 0.5
-        _Metallic ("Metallic", Range(0,1)) = 0.0
         [Header(Reflection)]
+        [NoScaleOffset]
         _ReflectionTex ("Texture", 2D) = "white" {}
 
         [Header(Densities)]
@@ -401,7 +401,10 @@
                 // --------------- //
 
                 // Calculate edge foam mask, by on clipping the optical depth.
-                float edgeFoamMask = round(exp(-opticalDepth / _EdgeFoamDepth));
+                // float edgeFoamMask = round(exp(-opticalDepth / _EdgeFoamDepth));
+                float edgeFoamMask = (exp(-opticalDepth / _EdgeFoamDepth));
+                // float edgeFoamMask = opticalDepth;
+
                 float3 edgeFoamColor = lerp(0, _EdgeFoamColor, edgeFoamMask);
                 edgeFoamColor = edgeFoamColor * lerp(_ShadowColor, 1, shadowMask);
 
@@ -440,6 +443,8 @@
 
                 float3 WaveColor = tex2D(_WaveTex, WaveUV * _WaveTling + DistrotWaveTS.xy*0.02);
                 color += WaveColor;
+                
+                // color = edgeFoamMask;
                 // Apply fog.
                 UNITY_APPLY_FOG(i.fogCoord, color);
 
