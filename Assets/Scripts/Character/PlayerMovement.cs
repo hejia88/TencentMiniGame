@@ -111,7 +111,7 @@ namespace Com.Tencent.DYYS
 
         private GameObject VCInstance;
 
-        private CinemachineVirtualCamera VirtualCameraInstance;
+        public CinemachineVirtualCamera VirtualCameraInstance;
 
         private PhotonView[] pvs;
 
