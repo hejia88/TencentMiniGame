@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Photon.Pun;
 
 public enum ItemType
 {
@@ -11,12 +10,13 @@ public enum ItemType
 public enum ItemName
 {
     Others,
-    GoldenSilk
+    GoldenSilk,
+    Assassination
 }
 
 namespace Com.Tencent.DYYS
 {
-    public class ItemPrefab : MonoBehaviourPun
+    public class ItemPrefab : MonoBehaviour
     {
 
         [Header("技能分类")]
@@ -34,6 +34,9 @@ namespace Com.Tencent.DYYS
 
         [Header("声音资源")]
         public AudioClip AudioClip;
+
+        [Header("暗杀时间")]
+        public float AssassinationTime;
 
         public ItemName ItemName;
 

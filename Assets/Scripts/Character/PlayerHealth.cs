@@ -8,12 +8,13 @@ namespace Com.Tencent.DYYS
 {
     public class PlayerHealth : MonoBehaviourPun
     {
-        public int MaxHealth = 1;
+        public int MaxHealth = 2;
         public GameObject Player;
         //  public List<GameObject>  Prefab_PlayerList;
         [HideInInspector] public int CurrentHealth;
         private PlayerItem Item;
         public Text HealthText;
+        public Transform m_HealthPanel;
 
         private void Awake()
         {
@@ -22,6 +23,10 @@ namespace Com.Tencent.DYYS
 
         void Start()
         {
+            if (PhotonNetwork.IsConnected == true && photonView.IsMine == false)
+            {
+                m_HealthPanel.gameObject.SetActive(false);
+            }
             Item = GetComponent<PlayerItem>();
             //txt_Lives.text = string.Format("{0}", manager_PlayerHealth.CurrentLives);
             HealthText.text = string.Format("{0}", CurrentHealth);

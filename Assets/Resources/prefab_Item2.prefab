@@ -115,6 +115,7 @@ MonoBehaviour:
   PickDistance: 1
   UItexture: {fileID: 21300000, guid: 90e99a7fde056a4418b9fe16084adb5c, type: 3}
   AudioClip: {fileID: 0}
+  AssassinationTime: 0
   ItemName: 0
 --- !u!114 &999032965681285259
 MonoBehaviour:

@@ -110,11 +110,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2c65356522c920499a1c994fb3ba562, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Itemtype: 1
-  UsageCount: 0
+  Itemtype: 0
+  UsageCount: 1
   PickDistance: 1
   UItexture: {fileID: 21300000, guid: 615f3cdaa1374bd4db14286066f31cde, type: 3}
   AudioClip: {fileID: 0}
+  AssassinationTime: 0
   ItemName: 0
 --- !u!114 &9047774711383782238
 MonoBehaviour:
